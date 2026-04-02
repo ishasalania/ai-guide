@@ -3,1287 +3,596 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>AI Kickstart Guide 2026 – Isha Salania</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet"/>
+<title>AI Kickstart Guide 2026 — Isha Salania</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  :root{
-    --ink:#0d0d0b;
-    --ink2:#3a3832;
-    --ink3:#7a7770;
-    --cream:#faf8f4;
-    --warm:#f2ede4;
-    --gold:#b8842a;
-    --gold-light:#e8c96a;
-    --gold-pale:#fdf4e0;
-    --rust:#b84c2a;
-    --rust-pale:#fbe9e2;
-    --teal:#1d7a6b;
-    --teal-pale:#e2f4f0;
-    --blue:#1e5fa0;
-    --blue-pale:#e3eefa;
-    --border:#e2ddd5;
-    --r:12px;
-    --r-lg:20px;
-  }
-  body{
-    font-family:'DM Sans',sans-serif;
-    background:#fff;
-    color:var(--ink);
-    font-size:16px;
-    line-height:1.7;
-    max-width:860px;
-    margin:0 auto;
-    padding:0;
-  }
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1a1a1a;
+  --ink2:#3d3d3d;
+  --ink3:#6b6b6b;
+  --ink4:#9e9e9e;
+  --border:#e8e8e8;
+  --bg:#ffffff;
+  --surface:#f7f7f5;
+  --surface2:#f0efec;
 
-  /* ─── TYPOGRAPHY ─── */
-  h1,h2,h3,h4{font-family:'DM Serif Display',serif;font-weight:400;line-height:1.2}
-  h1{font-size:clamp(2.4rem,6vw,4rem);letter-spacing:-.02em}
-  h2{font-size:clamp(1.6rem,4vw,2.4rem)}
-  h3{font-size:1.25rem}
-  .label{font-family:'DM Sans',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
-  p{color:var(--ink2);line-height:1.75}
-  strong{font-weight:600;color:var(--ink)}
-  a{color:var(--blue);text-decoration:underline;text-underline-offset:3px}
+  --accent:#3b82c4;
+  --accent-light:#eff6ff;
+  --accent-mid:#5a9fd4;
 
-  /* ─── LAYOUT PRIMITIVES ─── */
-  .section{padding:64px 48px;border-bottom:1px solid var(--border)}
-  .section:last-child{border-bottom:none}
-  .inner{max-width:760px;margin:0 auto}
-  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  @media(max-width:640px){.grid2,.grid3{grid-template-columns:1fr}.section{padding:40px 24px}}
+  --r:8px;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.75;max-width:880px;margin:0 auto}
+h1,h2,h3{font-family:'Lora',serif;font-weight:400;line-height:1.15;letter-spacing:-.01em}
+h1{font-size:clamp(2.6rem,6vw,4.5rem)}
+h2{font-size:clamp(1.7rem,4vw,2.6rem)}
+h3{font-size:1.25rem}
+h4{font-family:'DM Sans',sans-serif;font-weight:600;font-size:.93rem;color:var(--ink)}
+p{color:var(--ink3);line-height:1.82}
+strong{font-weight:600;color:var(--ink2)}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(59,130,196,.25);transition:border-color .15s}
+a:hover{border-color:var(--accent)}
+em{font-style:italic}
+code{font-family:monospace;background:var(--surface);padding:2px 6px;border-radius:4px;font-size:.83em;color:var(--ink2)}
 
-  /* ─── COVER ─── */
-  .cover{
-    background:var(--ink);
-    color:#fff;
-    padding:72px 48px 60px;
-    position:relative;
-    overflow:hidden;
-  }
-  .cover::before{
-    content:'';
-    position:absolute;inset:0;
-    background:
-      radial-gradient(ellipse 60% 50% at 90% 20%, rgba(184,132,42,.25) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(29,122,107,.15) 0%, transparent 70%);
-  }
-  .cover-inner{position:relative;z-index:1}
-  .cover .label{color:var(--gold-light)}
-  .cover h1{color:#fff;margin:16px 0 8px}
-  .cover h1 em{font-style:italic;color:var(--gold-light)}
-  .cover .sub{font-size:1.15rem;color:rgba(255,255,255,.65);max-width:520px;margin-bottom:40px}
-  .cover-meta{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
-  .cover-badge{
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.15);
-    border-radius:100px;
-    padding:8px 20px;
-    font-size:.8rem;
-    color:rgba(255,255,255,.7);
-  }
-  .cover-badge strong{color:#fff}
-  .gold-bar{height:4px;background:linear-gradient(90deg,var(--gold) 0%,var(--gold-light) 50%,transparent 100%);margin-bottom:32px}
-  .circle-deco{
-    position:absolute;right:-60px;top:-80px;
-    width:380px;height:380px;
-    border-radius:50%;
-    border:1px solid rgba(184,132,42,.2);
-    pointer-events:none;
-  }
-  .circle-deco2{
-    position:absolute;right:20px;top:-10px;
-    width:220px;height:220px;
-    border-radius:50%;
-    border:1px solid rgba(184,132,42,.12);
-    pointer-events:none;
-  }
+.wrap{padding:64px 56px}
+@media(max-width:620px){.wrap{padding:40px 22px}}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:560px){.g2{grid-template-columns:1fr}}
+.mt8{margin-top:8px}.mt12{margin-top:12px}.mt16{margin-top:16px}.mt20{margin-top:20px}.mt24{margin-top:24px}.mt28{margin-top:28px}.mt32{margin-top:32px}.mt40{margin-top:40px}
+.mb8{margin-bottom:8px}.mb12{margin-bottom:12px}.mb16{margin-bottom:16px}
+hr{border:none;border-top:1px solid var(--border);margin:32px 0}
+.label{font-family:'DM Sans',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink4)}
 
-  /* ─── SECTION HEADERS ─── */
-  .section-head{display:flex;align-items:center;gap:20px;margin-bottom:40px}
-  .section-num{
-    font-family:'DM Serif Display',serif;
-    font-size:3rem;
-    color:var(--border);
-    line-height:1;
-    min-width:48px;
-  }
-  .divider{height:1px;background:var(--border);flex:1}
+/* COVER — light, warm, no dark background */
+.cover{
+  background:var(--surface);
+  border-bottom:1px solid var(--border);
+  padding:80px 56px 72px;
+}
+@media(max-width:620px){.cover{padding:52px 22px 48px}}
+.cover-rule{width:40px;height:2px;background:var(--accent);margin-bottom:28px}
+.cover .label{margin-bottom:16px}
+.cover h1{color:var(--ink);margin-bottom:8px}
+.cover h1 em{color:var(--accent)}
+.cover-sub{font-size:1rem;color:var(--ink3);max-width:500px;margin:20px 0 48px;line-height:1.85;font-weight:300}
+.cover-links{display:flex;gap:8px;flex-wrap:wrap}
+.cover-link{
+  font-family:'DM Sans',sans-serif;
+  font-size:.72rem;font-weight:500;
+  color:var(--ink3);
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:8px 16px;
+  background:var(--bg);
+  text-decoration:none;
+  transition:all .15s;
+}
+.cover-link:hover{border-color:var(--accent);color:var(--accent)}
 
-  /* ─── CARDS ─── */
-  .card{
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:var(--r);
-    padding:24px;
-  }
-  .card-gold{border-left:3px solid var(--gold);background:var(--gold-pale)}
-  .card-rust{border-left:3px solid var(--rust);background:var(--rust-pale)}
-  .card-teal{border-left:3px solid var(--teal);background:var(--teal-pale)}
-  .card-blue{border-left:3px solid var(--blue);background:var(--blue-pale)}
-  .card-dark{background:var(--ink);color:#fff;border-color:var(--ink)}
-  .card-dark p{color:rgba(255,255,255,.7)}
-  .card-dark h3{color:#fff}
+/* NAV */
+.nav{display:flex;gap:0;background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:20;overflow-x:auto}
+.nav a{font-family:'DM Sans',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink4);text-decoration:none;padding:13px 16px;border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s}
+.nav a:hover{color:var(--ink);border-bottom-color:var(--accent)}
 
-  /* ─── STAT PILLS ─── */
-  .stats-row{display:flex;gap:16px;flex-wrap:wrap;margin:32px 0}
-  .stat{
-    background:var(--warm);
-    border-radius:100px;
-    padding:10px 24px;
-    display:flex;align-items:center;gap:10px;
-  }
-  .stat-num{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--gold)}
-  .stat-label{font-size:.85rem;color:var(--ink3)}
+/* SECTIONS */
+.section{border-bottom:1px solid var(--border)}
+.section:last-child{border-bottom:none}
+.sec-num{font-family:'Lora',serif;font-weight:400;font-size:4rem;color:var(--border);line-height:1;margin-bottom:-16px}
+.sec-head{margin-bottom:8px}
 
-  /* ─── TREND CARDS ─── */
-  .trend-card{
-    border:1px solid var(--border);
-    border-radius:var(--r);
-    padding:20px 24px;
-    display:flex;gap:16px;align-items:flex-start;
-  }
-  .trend-icon{
-    width:40px;height:40px;border-radius:10px;
-    display:flex;align-items:center;justify-content:center;
-    font-size:18px;flex-shrink:0;
-  }
-  .ti-gold{background:var(--gold-pale)}
-  .ti-rust{background:var(--rust-pale)}
-  .ti-teal{background:var(--teal-pale)}
-  .ti-blue{background:var(--blue-pale)}
-  .trend-card h4{font-family:'DM Sans',sans-serif;font-weight:600;font-size:.95rem;margin-bottom:4px}
-  .trend-card p{font-size:.87rem;line-height:1.6;margin:0}
+/* CARDS */
+.card{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:22px}
+.card-surface{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:22px}
+.card-accent{background:var(--accent-light);border:1px solid rgba(59,130,196,.15);border-radius:var(--r);padding:22px}
+.card-line{background:var(--bg);border:1px solid var(--border);border-left:2px solid var(--accent);border-radius:0 var(--r) var(--r) 0;padding:20px 22px}
 
-  /* ─── RAG DIAGRAM (pure HTML) ─── */
-  .rag-diagram{
-    background:var(--warm);
-    border-radius:var(--r-lg);
-    padding:32px 24px;
-    overflow-x:auto;
-  }
-  .rag-flow{
-    display:flex;align-items:center;gap:0;
-    min-width:600px;
-  }
-  .rag-node{
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:var(--r);
-    padding:14px 16px;
-    text-align:center;
-    flex:1;
-    min-width:110px;
-  }
-  .rag-node .n-icon{font-size:20px;display:block;margin-bottom:6px}
-  .rag-node .n-title{font-weight:600;font-size:.82rem;color:var(--ink);line-height:1.3}
-  .rag-node .n-sub{font-size:.72rem;color:var(--ink3);margin-top:3px}
-  .rag-node.gold{border-color:var(--gold);background:var(--gold-pale)}
-  .rag-node.teal{border-color:var(--teal);background:var(--teal-pale)}
-  .rag-node.rust{border-color:var(--rust);background:var(--rust-pale)}
-  .rag-node.blue{border-color:var(--blue);background:var(--blue-pale)}
-  .rag-arrow{
-    color:var(--ink3);font-size:1.2rem;padding:0 6px;flex-shrink:0;
-    display:flex;flex-direction:column;align-items:center;
-  }
-  .rag-arrow span{font-size:.65rem;color:var(--ink3);white-space:nowrap;margin-top:2px}
-  .rag-legend{
-    display:flex;gap:16px;flex-wrap:wrap;margin-top:20px;font-size:.78rem;color:var(--ink3)
-  }
-  .rag-legend-dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:4px;vertical-align:middle}
+/* STATS */
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}
+.stat{flex:1;min-width:130px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px}
+.stat-n{font-family:'Lora',serif;font-size:2.2rem;color:var(--accent);line-height:1;margin-bottom:4px}
+.stat-l{font-size:.76rem;color:var(--ink4);line-height:1.5}
 
-  /* ─── SEMANTIC DIAGRAM ─── */
-  .semantic-wrap{
-    background:var(--warm);
-    border-radius:var(--r-lg);
-    padding:28px;
-    overflow-x:auto;
-  }
-  .semantic-center{
-    display:flex;flex-direction:column;align-items:center;
-    gap:0;
-  }
-  .sem-row{display:flex;justify-content:center;gap:12px;width:100%}
-  .sem-node{
-    border-radius:100px;
-    padding:8px 18px;
-    font-size:.82rem;
-    font-weight:500;
-    text-align:center;
-    border:1px solid;
-    white-space:nowrap;
-  }
-  .sem-center-node{
-    background:var(--ink);color:#fff;border-color:var(--ink);
-    border-radius:100px;padding:14px 32px;
-    font-size:1rem;font-weight:600;margin:12px 0;
-  }
-  .sem-gold{background:var(--gold-pale);border-color:var(--gold);color:#7a5010}
-  .sem-teal{background:var(--teal-pale);border-color:var(--teal);color:#0f4a3f}
-  .sem-rust{background:var(--rust-pale);border-color:var(--rust);color:#7a2a10}
-  .sem-blue{background:var(--blue-pale);border-color:var(--blue);color:#0f3a6a}
-  .sem-connector{
-    display:flex;justify-content:center;gap:24px;
-    font-size:.65rem;color:var(--ink3);
-    margin:4px 0;
-  }
-  .sem-connector::before{content:'↕';font-size:.9rem;color:var(--border)}
+/* TRENDS */
+.trend{display:grid;grid-template-columns:36px 1fr;gap:18px;align-items:start;padding:18px 0;border-bottom:1px solid var(--border)}
+.trend:last-child{border-bottom:none}
+.trend-n{font-family:'Lora',serif;font-size:1.8rem;color:var(--border);line-height:1;padding-top:2px}
+.trend h4{margin-bottom:4px}
+.trend p{font-size:.84rem;line-height:1.75;margin:0}
+.tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.tag{font-family:'DM Sans',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:4px;background:var(--surface2);border:1px solid var(--border);color:var(--ink3)}
+.tag.a{background:var(--accent-light);border-color:rgba(59,130,196,.2);color:var(--accent)}
 
-  /* ─── MS PRODUCT STACK ─── */
-  .ms-stack{display:flex;flex-direction:column;gap:12px}
-  .ms-layer{
-    border-radius:var(--r);
-    padding:18px 24px;
-    display:flex;align-items:flex-start;gap:16px;
-  }
-  .ms-layer-icon{font-size:22px;flex-shrink:0;margin-top:2px}
-  .ms-layer h4{font-family:'DM Sans',sans-serif;font-weight:600;font-size:.95rem;margin-bottom:2px}
-  .ms-layer p{font-size:.83rem;line-height:1.6;margin:0;color:var(--ink2)}
-  .ms-layer .tag-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
-  .tag{
-    font-size:.68rem;font-weight:600;
-    padding:3px 10px;border-radius:100px;
-    background:rgba(0,0,0,.06);color:var(--ink2);
-  }
-  .ml-gold{background:var(--gold-pale);border:1px solid rgba(184,132,42,.25)}
-  .ml-blue{background:var(--blue-pale);border:1px solid rgba(30,95,160,.2)}
-  .ml-teal{background:var(--teal-pale);border:1px solid rgba(29,122,107,.2)}
-  .ml-rust{background:var(--rust-pale);border:1px solid rgba(184,76,42,.2)}
-  .ml-dark{background:var(--warm);border:1px solid var(--border)}
+/* FLOW DIAGRAMS */
+.flow-bg{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:24px 20px;overflow-x:auto}
+.flow{display:flex;align-items:center;min-width:540px}
+.fn{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:12px 10px;text-align:center;flex:1;min-width:82px}
+.fn.a{background:var(--accent-light);border-color:rgba(59,130,196,.2)}
+.fn.s{background:var(--surface2);border-color:var(--border)}
+.fn .ft{font-family:'DM Sans',sans-serif;font-weight:600;font-size:.7rem;color:var(--ink);line-height:1.3;margin-bottom:2px}
+.fn .fs{font-size:.62rem;color:var(--ink4);line-height:1.3}
+.fa{display:flex;flex-direction:column;align-items:center;gap:2px;padding:0 4px;flex-shrink:0}
+.fa-line{width:16px;height:1px;background:var(--border)}
+.fa small{font-family:'DM Sans',sans-serif;font-size:.55rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink4);white-space:nowrap}
 
-  /* ─── PROMPT BOXES ─── */
-  .prompt-box{
-    background:var(--ink);
-    border-radius:var(--r);
-    padding:20px 24px;
-    font-family:'DM Sans',sans-serif;
-    font-size:.88rem;
-    color:rgba(255,255,255,.85);
-    line-height:1.7;
-    position:relative;
-  }
-  .prompt-box::before{
-    content:'"';
-    position:absolute;top:10px;left:16px;
-    font-size:2.5rem;font-family:'DM Serif Display',serif;
-    color:rgba(184,132,42,.4);line-height:1;
-  }
-  .prompt-box .prompt-text{padding-left:24px}
-  .prompt-box .prompt-label{
-    font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-    color:var(--gold-light);margin-bottom:10px;
-  }
-  .copy-hint{font-size:.7rem;color:var(--ink3);margin-top:8px;font-style:italic}
+/* SEMANTIC */
+.clusters{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.cluster{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:14px;flex:1;min-width:148px}
+.cl-label{font-family:'DM Sans',sans-serif;font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink4);margin-bottom:10px}
+.sp{border-radius:4px;padding:6px 10px;font-size:.74rem;font-weight:400;text-align:center;margin-bottom:4px;border:1px solid;font-family:'DM Sans',sans-serif}
+.sp.a{background:var(--accent-light);border-color:rgba(59,130,196,.18);color:var(--accent)}
+.sp.b{background:var(--surface);border-color:var(--border);color:var(--ink3)}
+.sim{font-size:.6rem;color:var(--ink4);text-align:center;margin-bottom:4px}
+.ef{display:flex;align-items:center;gap:5px;flex-wrap:wrap;background:var(--bg);border-radius:var(--r);padding:14px;border:1px solid var(--border);margin-top:14px}
+.es{text-align:center;flex:1;min-width:76px}
+.es-l{font-family:'DM Sans',sans-serif;font-size:.67rem;font-weight:600;color:var(--ink)}
+.es-s{font-size:.6rem;color:var(--ink4);margin-top:2px;line-height:1.35}
+.ea{color:var(--border);font-size:.85rem;flex-shrink:0}
 
-  /* ─── BEST PRACTICES ─── */
-  .bp-row{display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--border)}
-  .bp-row:last-child{border-bottom:none}
-  .bp-num{
-    min-width:28px;height:28px;border-radius:50%;
-    background:var(--gold-pale);border:1px solid var(--gold);
-    display:flex;align-items:center;justify-content:center;
-    font-size:.78rem;font-weight:600;color:var(--gold);flex-shrink:0;margin-top:2px;
-  }
-  .bp-row h4{font-family:'DM Sans',sans-serif;font-weight:600;font-size:.93rem;margin-bottom:3px}
-  .bp-row p{font-size:.85rem;color:var(--ink3);margin:0}
+/* STACK */
+.stack{display:flex;flex-direction:column;gap:6px}
+.sl{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;display:flex;gap:12px;align-items:flex-start}
+.sl.accent{background:var(--accent-light);border-color:rgba(59,130,196,.15)}
+.sl.surface{background:var(--surface)}
+.sl-pip{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.sl h4{font-size:.87rem;margin-bottom:3px}
+.sl p{font-size:.8rem;line-height:1.68;margin:0}
+.conn{text-align:center;font-family:'DM Sans',sans-serif;font-size:.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink4);padding:3px 0}
 
-  /* ─── WORKFLOW TIMELINE ─── */
-  .timeline{display:flex;flex-direction:column;gap:0}
-  .tl-item{display:flex;gap:20px;padding-bottom:28px;position:relative}
-  .tl-item:not(:last-child) .tl-line{
-    position:absolute;left:15px;top:32px;bottom:0;
-    width:1px;background:var(--border);
-  }
-  .tl-dot{
-    width:32px;height:32px;border-radius:50%;flex-shrink:0;
-    background:var(--warm);border:2px solid var(--border);
-    display:flex;align-items:center;justify-content:center;
-    font-size:14px;margin-top:2px;position:relative;z-index:1;
-  }
-  .tl-dot.active{background:var(--gold-pale);border-color:var(--gold)}
-  .tl-content{flex:1}
-  .tl-time{font-size:.72rem;font-weight:600;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
-  .tl-title{font-weight:600;font-size:.95rem;margin-bottom:4px}
-  .tl-body{font-size:.85rem;color:var(--ink3);line-height:1.6}
+/* BP */
+.bp{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--border)}
+.bp:last-child{border-bottom:none}
+.bp-n{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--accent);display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;font-size:.68rem;font-weight:700;color:var(--accent);flex-shrink:0;margin-top:1px}
+.bp h4{font-size:.87rem;margin-bottom:3px}
+.bp p{font-size:.81rem;margin:0;line-height:1.68;color:var(--ink3)}
 
-  /* ─── CHART AREA ─── */
-  .chart-wrap{position:relative;width:100%;height:280px}
-  .chart-label{font-size:.78rem;color:var(--ink3);margin-top:8px;text-align:center}
+/* PROMPTS */
+.prompt{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px}
+.pl{font-family:'DM Sans',sans-serif;font-size:.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.pt{font-family:'Lora',serif;font-size:.9rem;color:var(--ink2);line-height:1.82;font-style:italic}
+.ph{font-family:'DM Sans',sans-serif;font-size:.7rem;color:var(--ink4);margin-top:7px}
 
-  /* ─── CALLOUT QUOTE ─── */
-  .big-quote{
-    border-left:3px solid var(--gold);
-    padding:16px 24px;
-    margin:32px 0;
-    background:var(--gold-pale);
-    border-radius:0 var(--r) var(--r) 0;
-  }
-  .big-quote p{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--ink);font-style:italic;line-height:1.6}
-  .big-quote cite{font-size:.8rem;color:var(--ink3);font-style:normal;display:block;margin-top:8px}
+/* TIMELINE */
+.tl{display:flex;flex-direction:column}
+.tl-item{display:flex;gap:14px;padding-bottom:22px;position:relative}
+.tl-item:not(:last-child) .tl-bar{position:absolute;left:12px;top:26px;bottom:0;width:1px;background:var(--border)}
+.tl-dot{width:26px;height:26px;border-radius:50%;flex-shrink:0;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;font-size:.62rem;font-weight:700;color:var(--ink4);position:relative;z-index:1;margin-top:1px}
+.tl-dot.on{background:var(--accent-light);border-color:rgba(59,130,196,.3);color:var(--accent)}
+.tl-time{font-family:'DM Sans',sans-serif;font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink4);margin-bottom:2px}
+.tl-title{font-family:'DM Sans',sans-serif;font-weight:600;font-size:.86rem;margin-bottom:4px;color:var(--ink)}
+.tl-body{font-size:.8rem;color:var(--ink3);line-height:1.72}
 
-  /* ─── CTA FOOTER ─── */
-  .cta-section{
-    background:var(--ink);
-    color:#fff;
-    padding:60px 48px;
-    text-align:center;
-  }
-  .cta-section h2{color:#fff;margin-bottom:16px}
-  .cta-section p{color:rgba(255,255,255,.65);max-width:480px;margin:0 auto 32px}
-  .cta-handle{
-    display:inline-block;
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.2);
-    border-radius:100px;
-    padding:12px 32px;
-    font-size:1rem;font-weight:600;color:#fff;
-    text-decoration:none;
-    letter-spacing:.02em;
-  }
-  .cta-platforms{display:flex;justify-content:center;gap:12px;margin-top:20px;flex-wrap:wrap}
-  .platform-tag{
-    font-size:.75rem;color:rgba(255,255,255,.55);
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.1);
-    border-radius:100px;padding:5px 14px;
-    transition:background .15s, color .15s;
-  }
-  .platform-tag:hover{background:rgba(255,255,255,.12);color:#fff}
+/* PULLQUOTE */
+.pq{border-left:2px solid var(--accent);padding:18px 24px;background:var(--accent-light);border-radius:0 var(--r) var(--r) 0;margin:28px 0}
+.pq p{font-family:'Lora',serif;font-style:italic;font-size:1.05rem;color:var(--ink2);line-height:1.68}
+.pq cite{font-family:'DM Sans',sans-serif;font-size:.66rem;font-weight:500;color:var(--ink4);font-style:normal;margin-top:8px;display:block;letter-spacing:.06em;text-transform:uppercase}
 
-  /* ─── CANVA COPY HINT ─── */
-  .canva-bar{
-    background:var(--gold-pale);
-    border:1px dashed var(--gold);
-    border-radius:var(--r);
-    padding:12px 20px;
-    font-size:.8rem;
-    color:var(--gold);
-    text-align:center;
-    margin-bottom:28px;
-  }
+/* CHART */
+.chart-box{position:relative;width:100%;height:252px}
+.chart-cap{font-family:'DM Sans',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink4);text-align:center;margin-top:10px}
 
-  /* ─── PRINT / EXPORT ─── */
-  @media print{
-    .section{page-break-inside:avoid}
-    .canva-bar{display:none}
-  }
+/* CANVA TIP */
+.ctip{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:9px 16px;font-family:'DM Sans',sans-serif;font-size:.72rem;color:var(--ink4);text-align:center;margin-bottom:28px}
 
-  /* ─── NAV TOC ─── */
-  .toc{
-    display:flex;gap:8px;flex-wrap:wrap;
-    padding:20px 48px;
-    border-bottom:1px solid var(--border);
-    background:var(--cream);
-    position:sticky;top:0;z-index:10;
-  }
-  .toc a{
-    font-size:.75rem;font-weight:500;color:var(--ink3);
-    text-decoration:none;padding:5px 12px;border-radius:100px;
-    border:1px solid var(--border);background:#fff;
-    transition:all .15s;
-  }
-  .toc a:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-pale)}
-
-  /* ─── CHIP ROW ─── */
-  .chip-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-  .chip{
-    font-size:.72rem;font-weight:600;padding:4px 12px;border-radius:100px;
-    background:var(--warm);border:1px solid var(--border);color:var(--ink3)
-  }
-  .chip.gold{background:var(--gold-pale);border-color:var(--gold);color:#7a5010}
-  .chip.teal{background:var(--teal-pale);border-color:var(--teal);color:#0f4a3f}
-  .chip.blue{background:var(--blue-pale);border-color:var(--blue);color:#0f3a6a}
-
-  /* misc */
-  .mt8{margin-top:8px} .mt16{margin-top:16px} .mt24{margin-top:24px} .mt32{margin-top:32px}
-  .mb8{margin-bottom:8px} .mb16{margin-bottom:16px} .mb24{margin-bottom:24px}
-  .gap16{gap:16px} .bold{font-weight:600}
-  hr.light{border:none;border-top:1px solid var(--border);margin:24px 0}
+/* FOOTER */
+.footer{background:var(--surface);border-top:1px solid var(--border);padding:72px 56px;text-align:center}
+@media(max-width:620px){.footer{padding:48px 22px}}
+.footer h2{color:var(--ink);margin-bottom:12px}
+.footer p{color:var(--ink4);max-width:400px;margin:0 auto 36px;font-size:.9rem}
+.fl{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.flink{font-family:'DM Sans',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);border:1px solid var(--border);border-radius:4px;padding:9px 18px;text-decoration:none;background:var(--bg);transition:all .15s}
+.flink:hover{border-color:var(--accent);color:var(--accent)}
+.fcopy{font-family:'DM Sans',sans-serif;font-size:.62rem;color:var(--ink4);margin-top:32px;padding-top:20px;border-top:1px solid var(--border);letter-spacing:.06em;text-transform:uppercase}
 </style>
 </head>
 <body>
 
 <!-- COVER -->
-<div class="cover" id="top">
-  <div class="circle-deco"></div>
-  <div class="circle-deco2"></div>
-  <div class="cover-inner">
-    <div class="label">Free Guide · 2026 Edition</div>
-    <h1>Your AI <em>Kickstart</em><br/>Guide</h1>
-    <p class="sub">RAG, semantic AI, Microsoft's intelligence stack — and exactly how to use it all in 2026. No fluff. Just what actually works.</p>
-    <div class="gold-bar"></div>
-    <div class="cover-meta">
-      <a href="https://ishasalania.netlify.app/" class="cover-badge" target="_blank" style="text-decoration:none;color:inherit">by <strong>Isha Salania</strong> ↗</a>
-      <a href="https://www.instagram.com/ishasalania" class="cover-badge" target="_blank" style="text-decoration:none;color:inherit"><strong>Instagram</strong> @ishasalania</a>
-      <a href="https://www.tiktok.com/@ishasalania" class="cover-badge" target="_blank" style="text-decoration:none;color:inherit"><strong>TikTok</strong> @ishasalania</a>
-      <a href="https://www.youtube.com/channel/UCEP5GZlrufSxr2pNfTQGkGg" class="cover-badge" target="_blank" style="text-decoration:none;color:inherit"><strong>YouTube</strong> Isha Salania</a>
-    </div>
+<div class="cover">
+  <div class="cover-rule"></div>
+  <div class="label">Free Guide &nbsp;·&nbsp; 2026 &nbsp;·&nbsp; Isha Salania</div>
+  <h1 class="mt16">Your AI<br/><em>Kickstart</em><br/>Guide</h1>
+  <p class="cover-sub">i put everything i know into this. RAG architecture, semantic AI, the full Microsoft stack, and the exact workflow i use every day as a Solution Engineer and creator with 1M+ followers. no filler, just what actually works.</p>
+  <div class="cover-links">
+    <a href="https://ishasalania.netlify.app/" class="cover-link" target="_blank">ishasalania.netlify.app</a>
+    <a href="https://www.instagram.com/ishasalania" class="cover-link" target="_blank">Instagram</a>
+    <a href="https://www.tiktok.com/@ishasalania" class="cover-link" target="_blank">TikTok</a>
+    <a href="https://www.youtube.com/channel/UCEP5GZlrufSxr2pNfTQGkGg" class="cover-link" target="_blank">YouTube</a>
   </div>
 </div>
 
-<!-- TOC -->
-<nav class="toc">
-  <a href="#trends">AI Trends 2026</a>
+<!-- NAV -->
+<nav class="nav">
+  <a href="#trends">Trends</a>
   <a href="#semantic">Semantic AI</a>
-  <a href="#rag">RAG Deep Dive</a>
+  <a href="#rag">RAG</a>
   <a href="#microsoft">Microsoft Stack</a>
-  <a href="#build">Build it in 2026</a>
-  <a href="#prompts">Prompt Kit</a>
+  <a href="#build">Build it</a>
+  <a href="#prompts">Prompts</a>
   <a href="#workflow">Workflow</a>
 </nav>
 
-<!-- SECTION 1: TRENDS -->
-<section class="section" id="trends">
-  <div class="inner">
-    <div class="canva-bar">💡 Canva tip: screenshot each coloured section individually — each one is sized to fit a Canva A4 or Instagram carousel slide.</div>
-    <div class="section-head">
-      <div class="section-num">01</div>
+<!-- 01 -->
+<section class="section wrap" id="trends">
+  <div class="ctip">Canva tip — screenshot each section separately to use as carousel slides or A4 pages</div>
+  <div class="sec-num">01</div>
+  <div class="label mt8 mb16">What is actually happening right now</div>
+  <h2>The AI trends that matter in 2026</h2>
+  <p class="mt16" style="font-size:1rem;color:var(--ink2)">i've tested hundreds of tools, sat in on hundreds of client calls, and made content for over a million people following this space. here's what's actually shifting vs what's just noise.</p>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-n">73%</div><div class="stat-l">of enterprises running RAG in production right now</div></div>
+    <div class="stat"><div class="stat-n">10x</div><div class="stat-l">output speed gain on knowledge work tasks</div></div>
+    <div class="stat"><div class="stat-n">2026</div><div class="stat-l">the year agentic AI stops being a buzzword</div></div>
+  </div>
+
+  <div class="card mt24 mb24">
+    <div class="label mb16">Enterprise AI use case adoption · 2026</div>
+    <div class="chart-box"><canvas id="adoptionChart"></canvas></div>
+    <div class="chart-cap">% of enterprise teams actively using each capability</div>
+  </div>
+
+  <div class="mt28">
+    <div class="trend">
+      <div class="trend-n">1</div>
       <div>
-        <div class="label">What's happening right now</div>
-        <h2>The biggest AI trends in 2026</h2>
+        <h4>Agentic AI is the new SaaS layer</h4>
+        <p>agents don't just answer questions, they take actions. book meetings, write code, run searches, file tickets. every major platform is shipping an agent SDK right now. the skill isn't prompting, it's orchestrating agents across entire workflows.</p>
+        <div class="tags"><span class="tag a">Microsoft Copilot Studio</span><span class="tag a">Azure AI Foundry</span></div>
       </div>
-      <div class="divider"></div>
     </div>
-
-    <p>AI didn't slow down. It compounded. Here are the shifts that are actually changing how people work — not just what's getting funding.</p>
-
-    <div class="stats-row">
-      <div class="stat"><span class="stat-num">73%</span><span class="stat-label">of enterprises deploying RAG in production</span></div>
-      <div class="stat"><span class="stat-num">10×</span><span class="stat-label">speed gain on knowledge work tasks</span></div>
-      <div class="stat"><span class="stat-num">2026</span><span class="stat-label">the year agentic AI goes mainstream</span></div>
+    <div class="trend">
+      <div class="trend-n">2</div>
+      <div>
+        <h4>RAG has become table stakes</h4>
+        <p>Retrieval-Augmented Generation went from research paper to production standard. companies that don't ground their AI in their own data are building on sand. the winners have private knowledge bases feeding every AI interaction.</p>
+        <div class="tags"><span class="tag a">Microsoft Fabric</span><span class="tag a">Azure AI Search</span></div>
+      </div>
     </div>
-
-    <!-- Chart: AI adoption -->
-    <div class="card mt24 mb24">
-      <div class="label mb8">Market signal · AI use case adoption</div>
-      <div class="chart-wrap" style="height:260px">
-        <canvas id="adoptionChart"></canvas>
+    <div class="trend">
+      <div class="trend-n">3</div>
+      <div>
+        <h4>Multimodal is the new default</h4>
+        <p>text-only AI is the past. GPT-4o, Gemini 1.5, Claude 3 understand images, audio, documents, and code simultaneously. use cases that required five different tools now run in one conversation.</p>
+        <div class="tags"><span class="tag">Azure OpenAI GPT-4o</span><span class="tag">Azure AI Vision</span></div>
       </div>
-      <div class="chart-label">% of enterprise teams actively using each capability (2026 survey data)</div>
     </div>
-
-    <div style="display:flex;flex-direction:column;gap:14px" class="mt32">
-
-      <div class="trend-card">
-        <div class="trend-icon ti-gold">🧠</div>
-        <div>
-          <h4>Agentic AI is the new SaaS layer</h4>
-          <p>AI agents don't just answer questions — they take actions. Book meetings, write code, run searches, file tickets. In 2026, every major platform ships an agent SDK. The skill isn't prompting anymore; it's orchestrating agents across workflows.</p>
-          <div class="chip-row">
-            <span class="chip gold">Microsoft Copilot Studio</span>
-            <span class="chip gold">Azure AI Foundry</span>
-          </div>
-        </div>
+    <div class="trend">
+      <div class="trend-n">4</div>
+      <div>
+        <h4>Sovereign AI is not optional, especially in Europe</h4>
+        <p>this is what i work on every day at Microsoft Germany. governments and regulated industries are choosing private cloud and confidential compute over public APIs. where your data lives matters legally and ethically. edge RAG deployments are surging as a result.</p>
+        <div class="tags"><span class="tag">Azure Confidential Computing</span><span class="tag">Edge AI Foundry</span><span class="tag">Azure Arc</span></div>
       </div>
-
-      <div class="trend-card">
-        <div class="trend-icon ti-teal">🔍</div>
-        <div>
-          <h4>RAG has become table stakes</h4>
-          <p>Retrieval-Augmented Generation went from research paper to production standard. Companies that don't ground their AI in their own data are building on sand. The winners have private knowledge bases feeding every AI interaction.</p>
-          <div class="chip-row">
-            <span class="chip teal">Microsoft Fabric</span>
-            <span class="chip teal">Azure AI Search</span>
-          </div>
-        </div>
+    </div>
+    <div class="trend">
+      <div class="trend-n">5</div>
+      <div>
+        <h4>Small specialised models are beating giant general ones</h4>
+        <p>Microsoft's Phi-4, Meta's Llama 3, Mistral. smaller models fine-tuned on domain-specific data are outperforming GPT-4 on narrow tasks at a fraction of the cost. the era of one model ruling everything is over.</p>
+        <div class="tags"><span class="tag a">Azure AI Model Catalog</span><span class="tag a">Phi-4</span></div>
       </div>
-
-      <div class="trend-card">
-        <div class="trend-icon ti-blue">🌐</div>
-        <div>
-          <h4>Multimodal is the new default</h4>
-          <p>Text-only AI is the past. The frontier models — GPT-4o, Gemini 1.5, Claude 3 — understand images, audio, documents, and code simultaneously. Use cases that required five tools now run in one.</p>
-          <div class="chip-row">
-            <span class="chip blue">Azure OpenAI GPT-4o</span>
-            <span class="chip blue">Azure AI Vision</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="trend-card">
-        <div class="trend-icon ti-rust">🔒</div>
-        <div>
-          <h4>Sovereign AI &amp; data residency</h4>
-          <p>Especially in the EU and public sector: where your data lives matters. Governments and regulated industries are choosing private cloud + confidential compute over public APIs. Edge RAG and on-premise deployments are surging.</p>
-          <div class="chip-row">
-            <span class="chip">Azure Confidential Computing</span>
-            <span class="chip">Edge AI Foundry</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="trend-card">
-        <div class="trend-icon ti-gold">⚡</div>
-        <div>
-          <h4>Small, specialised models beat giant general ones</h4>
-          <p>Microsoft's Phi-4, Meta's Llama 3, Mistral — smaller models fine-tuned on domain-specific data are outperforming GPT-4 on narrow tasks at a fraction of the cost. The era of "one model rules all" is over.</p>
-          <div class="chip-row">
-            <span class="chip gold">Azure AI Model Catalog</span>
-            <span class="chip gold">Phi-4 (Microsoft)</span>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
 
-<!-- SECTION 2: SEMANTIC AI -->
-<section class="section" id="semantic">
-  <div class="inner">
-    <div class="section-head">
-      <div class="section-num">02</div>
-      <div>
-        <div class="label">How AI actually understands language</div>
-        <h2>Semantic understanding explained</h2>
-      </div>
-      <div class="divider"></div>
-    </div>
+<!-- 02 -->
+<section class="section wrap" id="semantic">
+  <div class="sec-num">02</div>
+  <div class="label mt8 mb16">Why AI understands meaning, not just words</div>
+  <h2>Semantic AI, explained simply</h2>
+  <p class="mt16" style="font-size:1rem;color:var(--ink2)">before you build anything with AI, you need to understand why it works. semantic AI is why searching "i feel sick after eating" finds "food poisoning symptoms" even though those words don't overlap at all.</p>
 
-    <p>Before you build anything with AI, you need to understand <em>why it works</em>. Semantic AI is the reason a search for "I feel sick after eating" surfaces "food poisoning symptoms" — even though those words don't overlap.</p>
-
-    <div class="big-quote">
-      <p>"Semantic understanding means AI grasps meaning, not just words. It's the difference between a search engine that matches keywords and an AI that understands intent."</p>
-      <cite>— Isha Salania, @ishasalania</cite>
-    </div>
-
-    <!-- Semantic space diagram -->
-    <div class="label mt24 mb8">Visual · Semantic embedding space (simplified)</div>
-    <div class="semantic-wrap">
-      <div style="text-align:center;font-size:.78rem;color:var(--ink3);margin-bottom:16px">Words with similar <em>meaning</em> cluster together in vector space — even if they look completely different</div>
-
-      <!-- Word clusters as coloured bubbles -->
-      <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center">
-
-        <div style="background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:16px 20px;min-width:180px">
-          <div style="font-size:.7rem;font-weight:600;color:var(--teal);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px">Healthcare cluster</div>
-          <div style="display:flex;flex-direction:column;gap:6px">
-            <div class="sem-node sem-teal">"I'm not feeling well"</div>
-            <div style="text-align:center;font-size:.65rem;color:var(--ink3)">↕ 0.94 similarity</div>
-            <div class="sem-node sem-teal">"symptoms of illness"</div>
-            <div style="text-align:center;font-size:.65rem;color:var(--ink3)">↕ 0.91 similarity</div>
-            <div class="sem-node sem-teal">"patient health status"</div>
-          </div>
-        </div>
-
-        <div style="background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:16px 20px;min-width:180px">
-          <div style="font-size:.7rem;font-weight:600;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px">Finance cluster</div>
-          <div style="display:flex;flex-direction:column;gap:6px">
-            <div class="sem-node sem-gold">"revenue went up"</div>
-            <div style="text-align:center;font-size:.65rem;color:var(--ink3)">↕ 0.96 similarity</div>
-            <div class="sem-node sem-gold">"profits increased"</div>
-            <div style="text-align:center;font-size:.65rem;color:var(--ink3)">↕ 0.89 similarity</div>
-            <div class="sem-node sem-gold">"positive earnings growth"</div>
-          </div>
-        </div>
-
-        <div style="background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:16px 20px;min-width:180px">
-          <div style="font-size:.7rem;font-weight:600;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px">Tech cluster</div>
-          <div style="display:flex;flex-direction:column;gap:6px">
-            <div class="sem-node sem-blue">"deploy to cloud"</div>
-            <div style="text-align:center;font-size:.65rem;color:var(--ink3)">↕ 0.93 similarity</div>
-            <div class="sem-node sem-blue">"push to Azure"</div>
-            <div style="text-align:center;font-size:.65rem;color:var(--ink3)">↕ 0.88 similarity</div>
-            <div class="sem-node sem-blue">"infrastructure release"</div>
-          </div>
-        </div>
-
-      </div>
-
-      <div style="background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:16px 24px;margin-top:20px">
-        <div style="font-size:.8rem;font-weight:600;margin-bottom:10px">What makes this work: <span style="color:var(--gold)">embedding models</span></div>
-        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:.8rem;color:var(--ink2)">
-          <div style="background:var(--warm);border-radius:8px;padding:8px 14px;text-align:center">
-            <div style="font-weight:600">Input text</div>
-            <div style="color:var(--ink3);font-size:.72rem">"I feel sick"</div>
-          </div>
-          <div style="color:var(--ink3)">→</div>
-          <div style="background:var(--gold-pale);border-radius:8px;padding:8px 14px;text-align:center">
-            <div style="font-weight:600">Embedding model</div>
-            <div style="color:var(--ink3);font-size:.72rem">text-embedding-3-large</div>
-          </div>
-          <div style="color:var(--ink3)">→</div>
-          <div style="background:var(--blue-pale);border-radius:8px;padding:8px 14px;text-align:center">
-            <div style="font-weight:600">1,536 numbers</div>
-            <div style="color:var(--ink3);font-size:.72rem">[0.32, -0.14, 0.89 ...]</div>
-          </div>
-          <div style="color:var(--ink3)">→</div>
-          <div style="background:var(--teal-pale);border-radius:8px;padding:8px 14px;text-align:center">
-            <div style="font-weight:600">Vector DB</div>
-            <div style="color:var(--ink3);font-size:.72rem">find nearest neighbours</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <hr class="light"/>
-
-    <h3 class="mt24">Why this matters for you</h3>
-    <p class="mt8">Semantic search is what makes RAG systems <em>actually intelligent</em>. Instead of matching exact words, they match meaning — so "quarterly earnings" finds documents about "Q3 revenue", "annual profit", and "financial results". Microsoft products like <strong>Azure AI Search</strong>, <strong>Microsoft Fabric OneLake</strong>, and <strong>Copilot for Microsoft 365</strong> all use this under the hood.</p>
-
-    <div class="grid2 mt24">
-      <div class="card card-teal">
-        <h4 style="font-family:'DM Sans';font-weight:600;font-size:.93rem">Microsoft example: Azure AI Search</h4>
-        <p style="font-size:.83rem;margin-top:6px">Hybrid search combining keyword + semantic vectors. It automatically re-ranks results by semantic relevance — so your documents, emails, and SharePoint content surface what the user <em>means</em>, not just what they typed.</p>
-      </div>
-      <div class="card card-blue">
-        <h4 style="font-family:'DM Sans';font-weight:600;font-size:.93rem">Microsoft example: Microsoft 365 Copilot</h4>
-        <p style="font-size:.83rem;margin-top:6px">When you ask Copilot "show me the deck Sarah shared about Q2", it uses semantic search across your Graph-connected data — not just a filename match — to find the right file even if it's titled "strategic_review_final_v3.pptx".</p>
-      </div>
-    </div>
-
+  <div class="pq">
+    <p>"semantic understanding means AI grasps meaning, not just words. it's the difference between a search engine that matches keywords and an AI that understands what you actually want."</p>
+    <cite>Isha Salania &nbsp;·&nbsp; @ishasalania</cite>
   </div>
-</section>
 
-<!-- SECTION 3: RAG -->
-<section class="section" id="rag">
-  <div class="inner">
-    <div class="section-head">
-      <div class="section-num">03</div>
-      <div>
-        <div class="label">The architecture powering enterprise AI</div>
-        <h2>RAG: how it works &amp; why it matters</h2>
+  <div class="label mt32 mb12">Semantic embedding space · simplified</div>
+  <div class="card-surface">
+    <p style="font-size:.78rem;color:var(--ink4);text-align:center;margin-bottom:16px">words with similar meaning cluster together in vector space, even when they look completely different</p>
+    <div class="clusters">
+      <div class="cluster">
+        <div class="cl-label">Healthcare</div>
+        <div class="sp a">"i'm not feeling well"</div>
+        <div class="sim">similarity: 0.94</div>
+        <div class="sp a">"symptoms of illness"</div>
+        <div class="sim">similarity: 0.91</div>
+        <div class="sp a">"patient health status"</div>
       </div>
-      <div class="divider"></div>
-    </div>
-
-    <p><strong>RAG = Retrieval-Augmented Generation.</strong> Instead of relying on what a model "memorised" during training, RAG lets it pull <em>your</em> data at query time. The result: an AI that knows your company docs, products, customers — and doesn't hallucinate facts it was never trained on.</p>
-
-    <!-- RAG Flow Diagram -->
-    <div class="label mt32 mb8">Architecture diagram · RAG pipeline</div>
-    <div class="rag-diagram">
-      <div class="rag-flow">
-        <div class="rag-node gold">
-          <span class="n-icon">💬</span>
-          <div class="n-title">User query</div>
-          <div class="n-sub">"What's our refund policy?"</div>
-        </div>
-        <div class="rag-arrow">→<span>embed</span></div>
-        <div class="rag-node blue">
-          <span class="n-icon">🔢</span>
-          <div class="n-title">Embedding model</div>
-          <div class="n-sub">Query → vector [1536 dims]</div>
-        </div>
-        <div class="rag-arrow">→<span>search</span></div>
-        <div class="rag-node teal">
-          <span class="n-icon">🗄</div>
-          <div class="n-title">Vector store</div>
-          <div class="n-sub">Top-k nearest chunks</div>
-        </div>
-        <div class="rag-arrow">→<span>inject</span></div>
-        <div class="rag-node rust">
-          <span class="n-icon">🧠</span>
-          <div class="n-title">LLM + context</div>
-          <div class="n-sub">Answer grounded in docs</div>
-        </div>
-        <div class="rag-arrow">→<span>return</span></div>
-        <div class="rag-node gold" style="border-color:var(--teal);background:var(--teal-pale)">
-          <span class="n-icon">✅</span>
-          <div class="n-title">Grounded answer</div>
-          <div class="n-sub">"30 days, no questions asked"</div>
-        </div>
+      <div class="cluster">
+        <div class="cl-label">Finance</div>
+        <div class="sp b">"revenue went up"</div>
+        <div class="sim">similarity: 0.96</div>
+        <div class="sp b">"profits increased"</div>
+        <div class="sim">similarity: 0.89</div>
+        <div class="sp b">"positive earnings growth"</div>
       </div>
-      <div class="rag-legend">
-        <div><span class="rag-legend-dot" style="background:var(--gold)"></span>User / output</div>
-        <div><span class="rag-legend-dot" style="background:var(--blue)"></span>Embedding</div>
-        <div><span class="rag-legend-dot" style="background:var(--teal)"></span>Retrieval</div>
-        <div><span class="rag-legend-dot" style="background:var(--rust)"></span>Generation</div>
+      <div class="cluster">
+        <div class="cl-label">Technology</div>
+        <div class="sp a">"deploy to cloud"</div>
+        <div class="sim">similarity: 0.93</div>
+        <div class="sp a">"push to Azure"</div>
+        <div class="sim">similarity: 0.88</div>
+        <div class="sp a">"infrastructure release"</div>
       </div>
     </div>
-
-    <!-- Indexing pipeline -->
-    <div class="label mt32 mb8">Architecture diagram · Document indexing pipeline (the "offline" side)</div>
-    <div class="rag-diagram">
-      <div class="rag-flow">
-        <div class="rag-node" style="background:var(--warm);border-color:var(--border)">
-          <span class="n-icon">📄</span>
-          <div class="n-title">Source data</div>
-          <div class="n-sub">PDFs, SharePoint, SQL, APIs</div>
-        </div>
-        <div class="rag-arrow">→<span>chunk</span></div>
-        <div class="rag-node" style="background:var(--warm);border-color:var(--border)">
-          <span class="n-icon">✂️</span>
-          <div class="n-title">Chunking</div>
-          <div class="n-sub">512 tokens, 20% overlap</div>
-        </div>
-        <div class="rag-arrow">→<span>embed</span></div>
-        <div class="rag-node blue">
-          <span class="n-icon">🔢</span>
-          <div class="n-title">Embed chunks</div>
-          <div class="n-sub">text-embedding-3-large</div>
-        </div>
-        <div class="rag-arrow">→<span>store</span></div>
-        <div class="rag-node teal">
-          <span class="n-icon">🗄</span>
-          <div class="n-title">Vector DB</div>
-          <div class="n-sub">Azure AI Search / Faiss</div>
-        </div>
-        <div class="rag-arrow">→<span>ready</span></div>
-        <div class="rag-node gold">
-          <span class="n-icon">🚀</span>
-          <div class="n-title">Index live</div>
-          <div class="n-sub">Ready for queries</div>
-        </div>
-      </div>
+    <div class="label mt20 mb10">How it works under the hood</div>
+    <div class="ef">
+      <div class="es"><div class="es-l">Input text</div><div class="es-s">"i feel sick"</div></div>
+      <div class="ea">→</div>
+      <div class="es"><div class="es-l">Embedding model</div><div class="es-s">text-embedding-3-large</div></div>
+      <div class="ea">→</div>
+      <div class="es"><div class="es-l">1,536 numbers</div><div class="es-s">[0.32, -0.14, 0.89...]</div></div>
+      <div class="ea">→</div>
+      <div class="es"><div class="es-l">Vector database</div><div class="es-s">find nearest neighbours</div></div>
+      <div class="ea">→</div>
+      <div class="es"><div class="es-l">Semantic match</div><div class="es-s">food poisoning, symptoms...</div></div>
     </div>
-
-    <!-- RAG adoption chart -->
-    <div class="card mt32 mb8">
-      <div class="label mb8">Data · RAG maturity curve — where most teams are in 2026</div>
-      <div class="chart-wrap" style="height:240px">
-        <canvas id="ragChart"></canvas>
-      </div>
-    </div>
-
-    <h3 class="mt32">RAG in real life — three Microsoft examples</h3>
-
-    <div style="display:flex;flex-direction:column;gap:14px;margin-top:20px">
-
-      <div class="card card-blue">
-        <div class="label mb8">Example 1 · Customer support at scale</div>
-        <p style="font-size:.88rem"><strong>Company:</strong> A telecoms provider indexes 2,000 product manuals, policy docs, and CRM records into Azure AI Search. <strong>Result:</strong> Support agents ask in plain English — "what's the roaming fee in Brazil for business plan customers?" — and get a cited, accurate answer in seconds. No hallucinations, because every answer is grounded in indexed docs.</p>
-        <div class="chip-row"><span class="chip blue">Azure AI Search</span><span class="chip blue">Azure OpenAI</span><span class="chip blue">Microsoft Fabric</span></div>
-      </div>
-
-      <div class="card card-teal">
-        <div class="label mb8">Example 2 · Sovereign AI for public sector</div>
-        <p style="font-size:.88rem"><strong>A German federal ministry</strong> needs AI that never leaves German data centres. Edge RAG deploys on Azure Sovereign Cloud — the LLM, embedding model, and vector store all run within the ministry's private environment. Citizens' data never touches a public API. This is exactly the use case I work on at Microsoft Germany.</p>
-        <div class="chip-row"><span class="chip teal">Azure Sovereign Cloud</span><span class="chip teal">Azure Confidential Computing</span><span class="chip teal">Edge AI Foundry</span></div>
-      </div>
-
-      <div class="card card-gold">
-        <div class="label mb8">Example 3 · Enterprise knowledge assistant</div>
-        <p style="font-size:.88rem"><strong>A financial services firm</strong> indexes 10 years of internal research, compliance docs, and client data in Microsoft Fabric OneLake. Analysts ask the Copilot layer natural-language questions — it retrieves the right chunks semantically and generates structured summaries with source citations. The Work IQ intelligence layer tracks what questions get asked most, surfaces knowledge gaps, and flags when docs are stale.</p>
-        <div class="chip-row"><span class="chip gold">Microsoft Fabric OneLake</span><span class="chip gold">Work IQ Layer</span><span class="chip gold">Copilot for M365</span></div>
-      </div>
-
-    </div>
-
   </div>
-</section>
 
-<!-- SECTION 4: MICROSOFT STACK -->
-<section class="section" id="microsoft">
-  <div class="inner">
-    <div class="section-head">
-      <div class="section-num">04</div>
-      <div>
-        <div class="label">The intelligent data + AI platform</div>
-        <h2>The Microsoft AI stack, layer by layer</h2>
-      </div>
-      <div class="divider"></div>
+  <hr/>
+  <h3>Why this matters for you</h3>
+  <p class="mt12">semantic search is what makes RAG systems actually intelligent. instead of matching exact words, they match meaning. so "quarterly earnings" finds documents about "Q3 revenue", "annual profit", and "financial results" automatically. <strong>Azure AI Search</strong>, <strong>Microsoft Fabric OneLake</strong>, and <strong>Copilot for M365</strong> all use this under the hood.</p>
+  <div class="g2 mt20">
+    <div class="card-line">
+      <h4>Azure AI Search</h4>
+      <p style="font-size:.82rem;margin-top:5px">hybrid search combining keyword and semantic vectors. it re-ranks results by semantic relevance so your documents, emails, and SharePoint content surface what the user means, not just what they typed.</p>
     </div>
-
-    <p>Microsoft's 2026 AI story isn't one product — it's a <em>coherent stack</em> where each layer feeds the next. Here's how it connects, from raw data to user-facing intelligence.</p>
-
-    <!-- Stack diagram -->
-    <div class="label mt32 mb16">Architecture · Microsoft intelligent data + AI stack</div>
-    <div class="ms-stack">
-
-      <div class="ms-layer ml-dark" style="background:var(--ink);border-color:var(--ink)">
-        <div class="ms-layer-icon">👤</div>
-        <div>
-          <h4 style="color:#fff">User experience layer — Copilot &amp; Work IQ</h4>
-          <p style="color:rgba(255,255,255,.6)">Where users actually interact. Microsoft 365 Copilot, Copilot Studio (custom agents), GitHub Copilot, and the emerging Work IQ intelligence layer — which analyses how work is done, surfaces insights, and connects the AI to the right data automatically.</p>
-          <div class="tag-row"><span class="tag" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.7)">M365 Copilot</span><span class="tag" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.7)">Copilot Studio</span><span class="tag" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.7)">Work IQ</span><span class="tag" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.7)">GitHub Copilot</span></div>
-        </div>
-      </div>
-
-      <div style="text-align:center;font-size:.85rem;color:var(--ink3);padding:6px 0">↕ AI grounding + orchestration</div>
-
-      <div class="ms-layer ml-gold">
-        <div class="ms-layer-icon">🏭</div>
-        <div>
-          <h4>Azure AI Foundry — the AI development platform</h4>
-          <p>Where you <em>build</em> AI applications. Model catalog (300+ models including GPT-4o, Phi-4, Llama 3), prompt flow for orchestration, evaluation tools, and deployment pipelines. Think of it as the factory floor where your AI app gets assembled and shipped to production.</p>
-          <div class="tag-row"><span class="tag">Model catalog</span><span class="tag">Prompt Flow</span><span class="tag">AI evaluation</span><span class="tag">SDK / REST API</span></div>
-        </div>
-      </div>
-
-      <div style="text-align:center;font-size:.85rem;color:var(--ink3);padding:6px 0">↕ Retrieval + search + semantic index</div>
-
-      <div class="ms-layer ml-blue">
-        <div class="ms-layer-icon">🔍</div>
-        <div>
-          <h4>Azure AI Search — the retrieval engine</h4>
-          <p>Hybrid semantic + keyword search across all your data. Supports vector search (HNSW index), semantic re-ranking, integrated vectorisation (send raw text → it auto-embeds), and built-in RAG patterns. This is the component that makes the retrieval step in RAG <em>actually work</em> at enterprise scale.</p>
-          <div class="tag-row"><span class="tag">Vector index</span><span class="tag">Hybrid search</span><span class="tag">Semantic re-ranking</span><span class="tag">Integrated vectorisation</span></div>
-        </div>
-      </div>
-
-      <div style="text-align:center;font-size:.85rem;color:var(--ink3);padding:6px 0">↕ Unified data platform</div>
-
-      <div class="ms-layer ml-teal">
-        <div class="ms-layer-icon">🧱</div>
-        <div>
-          <h4>Microsoft Fabric — the data foundation</h4>
-          <p>The unified analytics platform that replaced 5 separate Microsoft data tools. OneLake is the single copy of all your data (no duplication, no silos). Fabric's AI-ready data layer feeds Azure AI Foundry and AI Search automatically — your Lakehouse becomes your RAG knowledge base without extra pipelines. Real-time intelligence, Power BI, and Synapse all live here too.</p>
-          <div class="tag-row"><span class="tag">OneLake</span><span class="tag">Lakehouse</span><span class="tag">Real-time intelligence</span><span class="tag">Power BI</span><span class="tag">Synapse</span></div>
-        </div>
-      </div>
-
-      <div style="text-align:center;font-size:.85rem;color:var(--ink3);padding:6px 0">↕ Secure infrastructure</div>
-
-      <div class="ms-layer ml-rust">
-        <div class="ms-layer-icon">🔒</div>
-        <div>
-          <h4>Azure infrastructure — compute, security &amp; sovereignty</h4>
-          <p>The foundation everything runs on. For sensitive use cases: Azure Confidential Computing (data encrypted even during processing), Sovereign Cloud regions, and Private Link (your data never touches the public internet). For edge/hybrid: Azure Arc lets you run the whole stack on-prem or at the network edge — critical for sovereign AI.</p>
-          <div class="tag-row"><span class="tag">Confidential Computing</span><span class="tag">Sovereign Cloud</span><span class="tag">Private Link</span><span class="tag">Azure Arc</span><span class="tag">Edge AI</span></div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Stack adoption chart -->
-    <div class="card mt32">
-      <div class="label mb8">Data · Microsoft AI product awareness vs active use (2026)</div>
-      <div class="chart-wrap" style="height:260px">
-        <canvas id="msChart"></canvas>
-      </div>
-    </div>
-
-    <div class="card card-gold mt24">
-      <h4 style="font-family:'DM Sans';font-weight:600">The Work IQ layer — what is it?</h4>
-      <p style="font-size:.87rem;margin-top:8px">Work IQ is Microsoft's intelligence layer that sits between Copilot and your data. It tracks work patterns across M365 apps, identifies which documents are most referenced, which meetings lead to action, and how knowledge flows across teams. It then surfaces this as AI-powered recommendations — what to read before your next meeting, which docs your query is most likely about, who in your org has answered this question before. It makes the AI <em>context-aware about how your organisation works</em>, not just what's in your documents.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- SECTION 5: HOW TO BUILD IT -->
-<section class="section" id="build">
-  <div class="inner">
-    <div class="section-head">
-      <div class="section-num">05</div>
-      <div>
-        <div class="label">Step-by-step for builders</div>
-        <h2>How to build RAG in 2026 — best practices</h2>
-      </div>
-      <div class="divider"></div>
-    </div>
-
-    <p>You don't need a PhD. You need the right architecture decisions. Here are the ones that separate RAG prototypes that break in production from ones that scale.</p>
-
-    <!-- Best practices -->
-    <div style="margin-top:28px">
-
-      <div class="bp-row">
-        <div class="bp-num">1</div>
-        <div>
-          <h4>Start with your data, not your model</h4>
-          <p>The quality of your RAG system is 80% data quality, 20% model choice. Clean, well-structured, up-to-date source documents matter far more than whether you use GPT-4o or Phi-4. Use Microsoft Fabric to create a governed, clean OneLake before you touch any AI code.</p>
-        </div>
-      </div>
-
-      <div class="bp-row">
-        <div class="bp-num">2</div>
-        <div>
-          <h4>Chunk intelligently — don't just split by character count</h4>
-          <p>Bad chunking is the #1 cause of bad RAG answers. Chunk by semantic units (paragraphs, sections, Q&A pairs), not by fixed character counts. Use 512-token chunks with 20% overlap so context doesn't get lost at boundaries. Azure AI Search's integrated chunking does this automatically.</p>
-        </div>
-      </div>
-
-      <div class="bp-row">
-        <div class="bp-num">3</div>
-        <div>
-          <h4>Use hybrid search, not vector-only</h4>
-          <p>Pure vector search misses exact matches (product codes, names, IDs). Pure keyword search misses semantic matches. Hybrid search (vector + BM25 + semantic re-ranking) consistently outperforms both. Azure AI Search does this out of the box. Always enable it.</p>
-        </div>
-      </div>
-
-      <div class="bp-row">
-        <div class="bp-num">4</div>
-        <div>
-          <h4>Always include source citations in your outputs</h4>
-          <p>Tell the LLM to cite its sources in every answer. Return the source document name, chunk index, and page number alongside every generated response. This lets users verify, builds trust, and makes hallucination detection trivial. Copilot does this natively — copy the pattern.</p>
-        </div>
-      </div>
-
-      <div class="bp-row">
-        <div class="bp-num">5</div>
-        <div>
-          <h4>Evaluate continuously — not just at launch</h4>
-          <p>RAG quality degrades as your source data gets stale. Set up automated evaluation: track retrieval precision (are the right chunks being found?), answer faithfulness (is the answer supported by the retrieved chunks?), and user feedback. Azure AI Foundry has built-in evaluation pipelines for exactly this.</p>
-        </div>
-      </div>
-
-      <div class="bp-row">
-        <div class="bp-num">6</div>
-        <div>
-          <h4>Design for sovereignty and security from day one</h4>
-          <p>Especially in regulated industries: never design a system where sensitive data leaves your perimeter. Use Azure Private Link to keep all traffic internal, Managed Identity instead of API keys, and Azure Confidential Computing for the most sensitive workloads. Retrofitting security is 10× harder than building it in.</p>
-        </div>
-      </div>
-
-      <div class="bp-row">
-        <div class="bp-num">7</div>
-        <div>
-          <h4>Build a feedback loop from users to the index</h4>
-          <p>Every time a user marks an answer as "not helpful", that's a signal. Log it. Trace it back to the chunks that were retrieved. Use it to improve chunking, re-index, or flag documents for human review. This is how production RAG systems get better over time, not just at launch.</p>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Quickstart architecture -->
-    <div class="label mt40 mb16">Quickstart architecture · Build a RAG app with Azure in one day</div>
-    <div class="card" style="background:var(--warm)">
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <div class="tl-item">
-          <div class="tl-dot active">1</div>
-          <div class="tl-line"></div>
-          <div class="tl-content">
-            <div class="tl-time">Step 1 · ~2 hours</div>
-            <div class="tl-title">Ingest data into OneLake (Microsoft Fabric)</div>
-            <div class="tl-body">Connect your SharePoint, SQL DB, or file storage to Fabric. Use Fabric pipelines to clean and land data in Delta format in OneLake. No coding required for basic ingestion.</div>
-          </div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot active">2</div>
-          <div class="tl-line"></div>
-          <div class="tl-content">
-            <div class="tl-time">Step 2 · ~1 hour</div>
-            <div class="tl-title">Create an AI Search index (Azure AI Search)</div>
-            <div class="tl-body">Use the "Import and vectorise data" wizard in Azure portal. Point it at your OneLake. It chunks, embeds with text-embedding-3-large, and builds the hybrid index automatically.</div>
-          </div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot active">3</div>
-          <div class="tl-line"></div>
-          <div class="tl-content">
-            <div class="tl-time">Step 3 · ~2 hours</div>
-            <div class="tl-title">Build your chat app in Azure AI Foundry</div>
-            <div class="tl-body">Use Foundry's "Chat playground" to wire up GPT-4o to your AI Search index. Test with real queries. Add a system prompt defining tone, citation format, and scope boundaries.</div>
-          </div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot active">4</div>
-          <div class="tl-line"></div>
-          <div class="tl-content">
-            <div class="tl-time">Step 4 · ~1 hour</div>
-            <div class="tl-title">Deploy and secure</div>
-            <div class="tl-body">Deploy via Foundry's one-click deploy to an Azure App Service endpoint. Enable Managed Identity, Private Link, and Entra ID authentication. Your app is live and secure.</div>
-          </div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot">5</div>
-          <div class="tl-content">
-            <div class="tl-time">Step 5 · ongoing</div>
-            <div class="tl-title">Evaluate + iterate with Foundry evals</div>
-            <div class="tl-body">Set up automated evaluation runs in Azure AI Foundry. Track groundedness, relevance, and coherence scores. Connect user feedback. Ship improvements weekly.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- SECTION 6: PROMPTS -->
-<section class="section" id="prompts">
-  <div class="inner">
-    <div class="section-head">
-      <div class="section-num">06</div>
-      <div>
-        <div class="label">Ready to use — just fill in the blanks</div>
-        <h2>Prompt starter kit</h2>
-      </div>
-      <div class="divider"></div>
-    </div>
-
-    <p>These are real prompts I use for work, content, and thinking. Copy the text into Claude, ChatGPT, or Microsoft Copilot. Replace the <code style="background:var(--warm);padding:2px 6px;border-radius:4px;font-size:.85em">[brackets]</code>.</p>
-
-    <div style="display:flex;flex-direction:column;gap:20px;margin-top:28px">
-
-      <div>
-        <div class="label mb8">For explaining complex AI concepts simply</div>
-        <div class="prompt-box">
-          <div class="prompt-label">Use in: Claude / ChatGPT / Copilot</div>
-          <div class="prompt-text">Explain [CONCEPT — e.g. "RAG", "vector embeddings", "agentic AI"] to a smart non-technical audience. Use one clear analogy, three key takeaways, and one common misconception people have. No jargon without explanation. End with one question I can ask an expert to go deeper.</div>
-        </div>
-        <div class="copy-hint">Tip: Great for turning Microsoft docs or research papers into LinkedIn posts</div>
-      </div>
-
-      <div>
-        <div class="label mb8">For building a RAG system prompt</div>
-        <div class="prompt-box">
-          <div class="prompt-label">Use in: Azure AI Foundry / Copilot Studio</div>
-          <div class="prompt-text">You are a [ROLE — e.g. "customer support assistant"] for [COMPANY]. You have access to a knowledge base of [DOCUMENT TYPE — e.g. "product manuals, FAQs, policies"]. Answer questions ONLY based on information in the knowledge base. If you cannot find the answer, say "I don't have that information in my current knowledge base" — do not guess. Always cite the source document at the end of your answer in the format: Source: [document name, page/section].</div>
-        </div>
-        <div class="copy-hint">Tip: Paste this as your system prompt in Azure AI Foundry's chat playground when connecting to AI Search</div>
-      </div>
-
-      <div>
-        <div class="label mb8">For content ideation (creator mode)</div>
-        <div class="prompt-box">
-          <div class="prompt-label">Use in: Claude / ChatGPT</div>
-          <div class="prompt-text">I create content about [TOPIC] for [PLATFORM — TikTok / LinkedIn / Instagram]. My audience is [DESCRIBE — e.g. "students and early-career professionals interested in AI and tech"]. Give me 10 specific content ideas that are educational but instantly watchable. For each idea: the hook (first 3 seconds), the core insight, and one unexpected angle that makes it shareable. Focus on ideas that work as short-form video OR carousel posts.</div>
-        </div>
-      </div>
-
-      <div>
-        <div class="label mb8">For technical decision making</div>
-        <div class="prompt-box">
-          <div class="prompt-label">Use in: Claude / Copilot (with search)</div>
-          <div class="prompt-text">I need to choose between [OPTION A] and [OPTION B] for [USE CASE — e.g. "building a RAG system for a German government client"]. Key constraints: [LIST CONSTRAINTS — e.g. "data sovereignty required, budget under €50k, team has Azure expertise"]. Give me a structured comparison covering: technical fit, cost, security/compliance, scalability, and Microsoft ecosystem alignment. End with a clear recommendation and the top 3 questions I should ask the vendor before committing.</div>
-        </div>
-        <div class="copy-hint">Tip: This is my go-to prompt before recommending a solution to a client</div>
-      </div>
-
-      <div>
-        <div class="label mb8">For turning a meeting into action</div>
-        <div class="prompt-box">
-          <div class="prompt-label">Use in: M365 Copilot / Claude</div>
-          <div class="prompt-text">Here are my notes from a [TYPE — customer call / team meeting / discovery session]: [PASTE NOTES]. Extract: 1) the 3 most important things I learned, 2) decisions that were made, 3) open questions that need answers, 4) my action items with suggested deadlines, 5) one follow-up email I should send. Format as a clean summary I can share with my manager.</div>
-        </div>
-      </div>
-
+    <div class="card-line">
+      <h4>Microsoft 365 Copilot</h4>
+      <p style="font-size:.82rem;margin-top:5px">when you ask Copilot "show me the deck Sarah shared about Q2" it uses semantic search across your Graph-connected data to find the right file even if it's titled "strategic_review_final_v3.pptx"</p>
     </div>
   </div>
 </section>
 
-<!-- SECTION 7: WORKFLOW -->
-<section class="section" id="workflow">
-  <div class="inner">
-    <div class="section-head">
-      <div class="section-num">07</div>
-      <div>
-        <div class="label">How I actually use this every day</div>
-        <h2>My AI workflow as a Solution Engineer + Creator</h2>
-      </div>
-      <div class="divider"></div>
+<!-- 03 -->
+<section class="section wrap" id="rag">
+  <div class="sec-num">03</div>
+  <div class="label mt8 mb16">The architecture powering enterprise AI right now</div>
+  <h2>RAG: how it actually works</h2>
+  <p class="mt16" style="font-size:1rem;color:var(--ink2)"><strong>RAG = Retrieval-Augmented Generation.</strong> instead of relying on what a model memorised during training, RAG lets it pull your data at query time. the result: an AI that knows your company docs, products, customers, and doesn't hallucinate facts it was never trained on.</p>
+
+  <div class="label mt32 mb10">RAG query pipeline · what happens when someone asks a question</div>
+  <div class="flow-bg">
+    <div class="flow">
+      <div class="fn a"><div class="ft">User query</div><div class="fs">"what's our refund policy?"</div></div>
+      <div class="fa"><div class="fa-line"></div><small>embed</small></div>
+      <div class="fn"><div class="ft">Embedding model</div><div class="fs">query → vector [1536]</div></div>
+      <div class="fa"><div class="fa-line"></div><small>search</small></div>
+      <div class="fn"><div class="ft">Vector store</div><div class="fs">top-k nearest chunks</div></div>
+      <div class="fa"><div class="fa-line"></div><small>inject</small></div>
+      <div class="fn s"><div class="ft">LLM + context</div><div class="fs">grounded in your docs</div></div>
+      <div class="fa"><div class="fa-line"></div><small>return</small></div>
+      <div class="fn a"><div class="ft">Grounded answer</div><div class="fs">"30 days, no questions"</div></div>
     </div>
+  </div>
 
-    <p>I live in two worlds — enterprise AI sales engineering at Microsoft Germany, and content creation for 1M+ people. Here's how AI threads through both, without burning me out.</p>
-
-    <!-- Time allocation chart -->
-    <div class="card mt24 mb32">
-      <div class="label mb8">My time allocation with vs without AI assistance</div>
-      <div class="chart-wrap" style="height:240px">
-        <canvas id="timeChart"></canvas>
-      </div>
+  <div class="label mt24 mb10">Document indexing pipeline · the offline side</div>
+  <div class="flow-bg">
+    <div class="flow">
+      <div class="fn s"><div class="ft">Source data</div><div class="fs">PDFs, SharePoint, SQL</div></div>
+      <div class="fa"><div class="fa-line"></div><small>chunk</small></div>
+      <div class="fn s"><div class="ft">Chunking</div><div class="fs">512 tokens, 20% overlap</div></div>
+      <div class="fa"><div class="fa-line"></div><small>embed</small></div>
+      <div class="fn"><div class="ft">Embed chunks</div><div class="fs">text-embedding-3-large</div></div>
+      <div class="fa"><div class="fa-line"></div><small>store</small></div>
+      <div class="fn"><div class="ft">Vector DB</div><div class="fs">Azure AI Search</div></div>
+      <div class="fa"><div class="fa-line"></div><small>live</small></div>
+      <div class="fn a"><div class="ft">Index live</div><div class="fs">ready for queries</div></div>
     </div>
+  </div>
 
-    <div class="timeline mt24">
+  <div class="card mt28">
+    <div class="label mb16">RAG maturity curve · where most teams are in 2026</div>
+    <div class="chart-box"><canvas id="ragChart"></canvas></div>
+  </div>
 
-      <div class="tl-item">
-        <div class="tl-dot active">☀</div>
-        <div class="tl-line"></div>
-        <div class="tl-content">
-          <div class="tl-time">7:00 AM · Morning intelligence</div>
-          <div class="tl-title">AI briefing before I touch email</div>
-          <div class="tl-body">I start with a 10-minute Perplexity run: "what happened in enterprise AI and Azure announcements in the last 48 hours?" + "any news about [client industry]?" This gives me talking points for client calls without spending an hour on LinkedIn. Then I ask Claude to draft my top 3 priorities for the day based on my notes from yesterday.</div>
-        </div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-dot active">💼</div>
-        <div class="tl-line"></div>
-        <div class="tl-content">
-          <div class="tl-time">9:00 AM – 12:00 PM · Client work</div>
-          <div class="tl-title">Solution engineering with AI in the loop</div>
-          <div class="tl-body">Demos, architecture reviews, RFPs. I use M365 Copilot to pull context from past email threads before every call ("summarise my last 3 emails with this client and what we agreed"). After calls, I dictate a voice note → Whisper transcript → Claude turns it into a structured follow-up email draft. I edit and send. Total: 8 minutes instead of 30.</div>
-        </div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-dot active">🎥</div>
-        <div class="tl-line"></div>
-        <div class="tl-content">
-          <div class="tl-time">1:00 PM – 3:00 PM · Content creation</div>
-          <div class="tl-title">AI-assisted scripting and research</div>
-          <div class="tl-body">For long-form LinkedIn or TikTok: I brainstorm out loud with Claude for 10 min (brain dump → key ideas → hook options → script draft). For carousels: I ask for a 7-slide structure, then write the actual words myself. For video: I never read off a script — I use the AI output as a knowledge prompt, then talk naturally. CapCut AI does captions and cuts.</div>
-        </div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-dot active">📊</div>
-        <div class="tl-line"></div>
-        <div class="tl-content">
-          <div class="tl-time">3:00 PM – 5:00 PM · Strategy &amp; admin</div>
-          <div class="tl-title">AI handles the admin, I do the thinking</div>
-          <div class="tl-body">Email triage with Superhuman AI. Slide updates with Copilot in PowerPoint ("update this slide with the Azure AI Foundry announcement from last week"). Brand deal proposals: I use a template prompt that generates a first draft in 3 minutes, then personalise the one thing that matters — the brand fit rationale.</div>
-        </div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-dot">🌙</div>
-        <div class="tl-content">
-          <div class="tl-time">Evening · Weekly review</div>
-          <div class="tl-title">One AI conversation to end the week</div>
-          <div class="tl-body">Every Friday: I paste my week's notes into Claude and ask "what patterns do you see? What should I do more of? What am I avoiding?" It doesn't replace journaling — it gives me a starting point for reflection. Then I set 3 intentions for next week and add them to Notion AI.</div>
-        </div>
-      </div>
-
+  <h3 class="mt40">Three real Microsoft RAG examples</h3>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-top:18px">
+    <div class="card-line">
+      <div class="label mb8">Example 1 · Customer support at scale</div>
+      <p style="font-size:.83rem"><strong>A telecoms provider</strong> indexes 2,000 product manuals, policy docs, and CRM records into Azure AI Search. support agents ask in plain English and get cited, accurate answers in seconds. no hallucinations because every answer is grounded in indexed documents.</p>
+      <div class="tags mt10"><span class="tag">Azure AI Search</span><span class="tag">Azure OpenAI</span><span class="tag">Microsoft Fabric</span></div>
     </div>
-
-    <div class="big-quote mt32">
-      <p>"AI doesn't give me more hours. It gives me back the hours I was wasting on things that don't require my brain."</p>
-      <cite>— Isha Salania, @ishasalania</cite>
+    <div class="card-line">
+      <div class="label mb8">Example 2 · Sovereign AI for public sector (this is my actual job)</div>
+      <p style="font-size:.83rem"><strong>A German federal ministry</strong> needs AI that never leaves German data centres. edge RAG deploys on Azure Sovereign Cloud. the LLM, embedding model, and vector store all run within the ministry's private environment. citizens' data never touches a public API.</p>
+      <div class="tags mt10"><span class="tag a">Azure Sovereign Cloud</span><span class="tag a">Azure Confidential Computing</span><span class="tag a">Edge AI Foundry</span></div>
     </div>
-
+    <div class="card-line">
+      <div class="label mb8">Example 3 · Enterprise knowledge assistant</div>
+      <p style="font-size:.83rem"><strong>A financial services firm</strong> indexes 10 years of internal research, compliance docs, and client data in Microsoft Fabric OneLake. analysts ask natural-language questions and get structured summaries with source citations. the Work IQ layer tracks what gets asked most, surfaces knowledge gaps, and flags stale documents.</p>
+      <div class="tags mt10"><span class="tag">Microsoft Fabric OneLake</span><span class="tag">Work IQ</span><span class="tag">Copilot for M365</span></div>
+    </div>
   </div>
 </section>
 
-<!-- CTA FOOTER -->
-<div class="cta-section">
-  <div class="label" style="color:var(--gold-light);margin-bottom:12px">That's a wrap</div>
-  <h2>You made it to the end.<br/>Now go build something.</h2>
-  <p>If this guide helped, share it. Tag me and I'll reshare. And if you have questions about any of this — Azure AI, RAG, content strategy — my DMs are open.</p>
-  <a href="https://ishasalania.netlify.app/" class="cta-handle" target="_blank">ishasalania.netlify.app</a>
-  <div class="cta-platforms">
-    <a href="https://www.tiktok.com/@ishasalania" class="platform-tag" target="_blank" style="text-decoration:none">TikTok @ishasalania</a>
-    <a href="https://www.instagram.com/ishasalania" class="platform-tag" target="_blank" style="text-decoration:none">Instagram @ishasalania</a>
-    <a href="https://www.youtube.com/channel/UCEP5GZlrufSxr2pNfTQGkGg" class="platform-tag" target="_blank" style="text-decoration:none">YouTube: Isha Salania</a>
-    <a href="https://ishasalania.netlify.app/" class="platform-tag" target="_blank" style="text-decoration:none">Website</a>
+<!-- 04 -->
+<section class="section wrap" id="microsoft">
+  <div class="sec-num">04</div>
+  <div class="label mt8 mb16">The intelligent data + AI platform, layer by layer</div>
+  <h2>The Microsoft AI stack</h2>
+  <p class="mt16" style="font-size:1rem;color:var(--ink2)">Microsoft's 2026 AI story isn't one product. it's a coherent stack where each layer feeds the next. here's how it connects from raw data all the way to user-facing intelligence.</p>
+
+  <div class="label mt32 mb14">Architecture · Microsoft intelligent data + AI stack</div>
+  <div class="stack">
+    <div class="sl surface">
+      <div class="sl-pip" style="background:var(--accent)"></div>
+      <div>
+        <h4>User experience · Copilot + Work IQ</h4>
+        <p>where users actually interact. Microsoft 365 Copilot, Copilot Studio for custom agents, GitHub Copilot, and the Work IQ intelligence layer that analyses how work gets done, surfaces insights, and connects AI to the right data automatically.</p>
+        <div class="tags mt10"><span class="tag">M365 Copilot</span><span class="tag">Copilot Studio</span><span class="tag">Work IQ</span><span class="tag">GitHub Copilot</span></div>
+      </div>
+    </div>
+    <div class="conn">AI grounding + orchestration</div>
+    <div class="sl accent">
+      <div class="sl-pip" style="background:var(--accent)"></div>
+      <div>
+        <h4>Azure AI Foundry · the AI development platform</h4>
+        <p>where you build AI applications. model catalog with 300+ models including GPT-4o, Phi-4, Llama 3. prompt flow for orchestration, evaluation tools, and deployment pipelines. this is where i spend most of my technical time with clients.</p>
+        <div class="tags mt10"><span class="tag a">Model catalog</span><span class="tag a">Prompt Flow</span><span class="tag a">AI evaluation</span><span class="tag a">SDK / REST API</span></div>
+      </div>
+    </div>
+    <div class="conn">retrieval + search + semantic index</div>
+    <div class="sl">
+      <div class="sl-pip" style="background:var(--border)"></div>
+      <div>
+        <h4>Azure AI Search · the retrieval engine</h4>
+        <p>hybrid semantic + keyword search across all your data. supports vector search, semantic re-ranking, and integrated vectorisation. this is the component that makes the retrieval step in RAG actually work at enterprise scale.</p>
+        <div class="tags mt10"><span class="tag">Vector index</span><span class="tag">Hybrid search</span><span class="tag">Semantic re-ranking</span></div>
+      </div>
+    </div>
+    <div class="conn">unified data platform</div>
+    <div class="sl">
+      <div class="sl-pip" style="background:var(--border)"></div>
+      <div>
+        <h4>Microsoft Fabric · the data foundation</h4>
+        <p>the unified analytics platform that replaced 5 separate Microsoft data tools. OneLake is the single copy of all your data with no duplication and no silos. Fabric's AI-ready data layer feeds Azure AI Foundry and AI Search automatically so your Lakehouse becomes your RAG knowledge base without extra pipelines.</p>
+        <div class="tags mt10"><span class="tag">OneLake</span><span class="tag">Lakehouse</span><span class="tag">Real-time intelligence</span><span class="tag">Power BI</span></div>
+      </div>
+    </div>
+    <div class="conn">secure infrastructure</div>
+    <div class="sl surface">
+      <div class="sl-pip" style="background:var(--border)"></div>
+      <div>
+        <h4>Azure infrastructure · compute, security + sovereignty</h4>
+        <p>the foundation everything runs on. Azure Confidential Computing keeps data encrypted even during processing. Sovereign Cloud regions and Private Link ensure your data never touches the public internet. Azure Arc lets you run the whole stack on-prem or at the edge.</p>
+        <div class="tags mt10"><span class="tag">Confidential Computing</span><span class="tag">Sovereign Cloud</span><span class="tag">Private Link</span><span class="tag">Azure Arc</span></div>
+      </div>
+    </div>
   </div>
-  <div style="margin-top:40px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);font-size:.75rem;color:rgba(255,255,255,.3)">
-    © 2026 Isha Salania · All rights reserved · Guide version 1.0
+
+  <div class="card-accent mt20">
+    <h4>What is the Work IQ layer, exactly?</h4>
+    <p style="font-size:.83rem;margin-top:7px">Work IQ is Microsoft's intelligence layer sitting between Copilot and your data. it tracks work patterns across M365 apps, identifies which documents get referenced most, which meetings lead to actual action, and how knowledge flows across teams. then it surfaces recommendations: what to read before your next meeting, which docs your query is probably about, who in your org has answered this question before. one of the most underrated parts of the stack right now.</p>
   </div>
+
+  <div class="card mt16">
+    <div class="label mb16">Microsoft AI product awareness vs active use · 2026</div>
+    <div class="chart-box"><canvas id="msChart"></canvas></div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section class="section wrap" id="build">
+  <div class="sec-num">05</div>
+  <div class="label mt8 mb16">Step-by-step for builders</div>
+  <h2>How to build RAG in 2026</h2>
+  <p class="mt16" style="font-size:1rem;color:var(--ink2)">you don't need a PhD. you need the right architecture decisions. here are the ones that separate RAG prototypes that break in production from ones that actually scale.</p>
+
+  <div class="mt24">
+    <div class="bp"><div class="bp-n">1</div><div><h4>Start with your data, not your model</h4><p>the quality of your RAG system is 80% data quality and 20% model choice. clean, well-structured, up-to-date source documents matter far more than whether you use GPT-4o or Phi-4. use Microsoft Fabric to create a governed, clean OneLake before you touch any AI code.</p></div></div>
+    <div class="bp"><div class="bp-n">2</div><div><h4>Chunk intelligently, not by character count</h4><p>bad chunking is the number one cause of bad RAG answers. chunk by semantic units like paragraphs, sections, and Q&amp;A pairs, not by fixed character counts. use 512-token chunks with 20% overlap so context doesn't get lost at boundaries. Azure AI Search's integrated chunking does this automatically.</p></div></div>
+    <div class="bp"><div class="bp-n">3</div><div><h4>Use hybrid search, not vector-only</h4><p>pure vector search misses exact matches like product codes, names, and IDs. pure keyword search misses semantic matches. hybrid search combining vector + BM25 + semantic re-ranking consistently outperforms both. Azure AI Search does this out of the box.</p></div></div>
+    <div class="bp"><div class="bp-n">4</div><div><h4>Always cite your sources in outputs</h4><p>tell the LLM to cite sources in every answer. return the source document name, chunk index, and page number alongside every generated response. this lets users verify, builds trust, and makes hallucination detection trivial. Copilot does this natively.</p></div></div>
+    <div class="bp"><div class="bp-n">5</div><div><h4>Evaluate continuously, not just at launch</h4><p>RAG quality degrades as your source data gets stale. set up automated evaluation to track retrieval precision, answer faithfulness, and user feedback. Azure AI Foundry has built-in evaluation pipelines for exactly this.</p></div></div>
+    <div class="bp"><div class="bp-n">6</div><div><h4>Design for sovereignty from day one</h4><p>especially in regulated industries: never design a system where sensitive data leaves your perimeter. use Azure Private Link, Managed Identity instead of API keys, and Azure Confidential Computing for the most sensitive workloads. retrofitting security is 10x harder than building it in.</p></div></div>
+    <div class="bp"><div class="bp-n">7</div><div><h4>Build a feedback loop from users to the index</h4><p>every time a user marks an answer as "not helpful" that's a signal. log it. trace it back to the chunks that were retrieved. use it to improve chunking, re-index, or flag documents for human review. this is how production RAG gets better over time.</p></div></div>
+  </div>
+
+  <div class="label mt40 mb14">Quickstart · build a RAG app with Azure in one day</div>
+  <div class="card-surface">
+    <div class="tl">
+      <div class="tl-item"><div class="tl-dot on">1</div><div class="tl-bar"></div><div style="flex:1;padding-bottom:4px"><div class="tl-time">Step 1 · approx 2 hours</div><div class="tl-title">Ingest data into OneLake (Microsoft Fabric)</div><div class="tl-body">connect your SharePoint, SQL DB, or file storage to Fabric. use Fabric pipelines to clean and land data in Delta format in OneLake. no coding required for basic ingestion.</div></div></div>
+      <div class="tl-item"><div class="tl-dot on">2</div><div class="tl-bar"></div><div style="flex:1;padding-bottom:4px"><div class="tl-time">Step 2 · approx 1 hour</div><div class="tl-title">Create an AI Search index (Azure AI Search)</div><div class="tl-body">use the "Import and vectorise data" wizard in Azure portal. point it at your OneLake. it chunks, embeds with text-embedding-3-large, and builds the hybrid index automatically.</div></div></div>
+      <div class="tl-item"><div class="tl-dot on">3</div><div class="tl-bar"></div><div style="flex:1;padding-bottom:4px"><div class="tl-time">Step 3 · approx 2 hours</div><div class="tl-title">Build your chat app in Azure AI Foundry</div><div class="tl-body">use Foundry's Chat playground to wire up GPT-4o to your AI Search index. test with real queries. add a system prompt defining tone, citation format, and scope.</div></div></div>
+      <div class="tl-item"><div class="tl-dot on">4</div><div class="tl-bar"></div><div style="flex:1;padding-bottom:4px"><div class="tl-time">Step 4 · approx 1 hour</div><div class="tl-title">Deploy and secure</div><div class="tl-body">deploy via Foundry's one-click deploy to Azure App Service. enable Managed Identity, Private Link, and Entra ID authentication.</div></div></div>
+      <div class="tl-item"><div class="tl-dot">5</div><div style="flex:1"><div class="tl-time">Step 5 · ongoing</div><div class="tl-title">Evaluate and iterate with Foundry evals</div><div class="tl-body">set up automated evaluation runs in Azure AI Foundry. track groundedness, relevance, and coherence. connect user feedback. ship improvements weekly.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 -->
+<section class="section wrap" id="prompts">
+  <div class="sec-num">06</div>
+  <div class="label mt8 mb16">Ready to use — just fill in the brackets</div>
+  <h2>Prompt starter kit</h2>
+  <p class="mt16" style="font-size:1rem;color:var(--ink2)">these are real prompts i use for work, content, and thinking. copy into Claude, ChatGPT, or Microsoft Copilot. replace the <code>[brackets]</code> with your context.</p>
+
+  <div style="display:flex;flex-direction:column;gap:18px;margin-top:24px">
+    <div>
+      <div class="label mb8">For explaining complex AI concepts simply</div>
+      <div class="prompt"><div class="pl">Claude / ChatGPT / Copilot</div><div class="pt">Explain [CONCEPT, e.g. "RAG", "vector embeddings", "agentic AI"] to a smart non-technical audience. Use one clear analogy, three key takeaways, and one common misconception people have. No jargon without explanation. End with one question I can ask an expert to go deeper.</div></div>
+      <div class="ph">great for turning Microsoft docs or research papers into LinkedIn posts</div>
+    </div>
+    <div>
+      <div class="label mb8">For building a RAG system prompt</div>
+      <div class="prompt"><div class="pl">Azure AI Foundry / Copilot Studio</div><div class="pt">You are a [ROLE, e.g. "customer support assistant"] for [COMPANY]. You have access to a knowledge base of [DOCUMENT TYPE, e.g. "product manuals, FAQs, policies"]. Answer questions ONLY based on information in the knowledge base. If you cannot find the answer, say "I don't have that information in my current knowledge base" and do not guess. Always cite the source document at the end of your answer in the format: Source: [document name, page/section].</div></div>
+      <div class="ph">paste this as your system prompt in Azure AI Foundry's chat playground when connecting to AI Search</div>
+    </div>
+    <div>
+      <div class="label mb8">For content ideation</div>
+      <div class="prompt"><div class="pl">Claude / ChatGPT</div><div class="pt">I create content about [TOPIC] for [PLATFORM]. My audience is [DESCRIBE, e.g. "students and early-career professionals interested in AI"]. Give me 10 specific content ideas that are educational but instantly watchable. For each idea: the hook (first 3 seconds), the core insight, and one unexpected angle that makes it shareable. Focus on ideas that work as short-form video OR carousel posts.</div></div>
+    </div>
+    <div>
+      <div class="label mb8">For technical decision making</div>
+      <div class="prompt"><div class="pl">Claude / Copilot with search</div><div class="pt">I need to choose between [OPTION A] and [OPTION B] for [USE CASE]. Key constraints: [LIST CONSTRAINTS, e.g. "data sovereignty required, budget under 50k, team has Azure expertise"]. Give me a structured comparison covering: technical fit, cost, security/compliance, scalability, and Microsoft ecosystem alignment. End with a clear recommendation and the top 3 questions I should ask before committing.</div></div>
+      <div class="ph">my go-to before recommending a solution to a client</div>
+    </div>
+    <div>
+      <div class="label mb8">For turning a meeting into action</div>
+      <div class="prompt"><div class="pl">M365 Copilot / Claude</div><div class="pt">Here are my notes from a [TYPE, e.g. customer call / team meeting / discovery session]: [PASTE NOTES]. Extract: 1) the 3 most important things I learned, 2) decisions that were made, 3) open questions that need answers, 4) my action items with suggested deadlines, 5) one follow-up email I should send. Format as a clean summary I can share with my manager.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 -->
+<section class="section wrap" id="workflow">
+  <div class="sec-num">07</div>
+  <div class="label mt8 mb16">How i actually use this every day</div>
+  <h2>My AI workflow as an SE + creator</h2>
+  <p class="mt16" style="font-size:1rem;color:var(--ink2)">i live in two worlds: enterprise AI sales engineering at Microsoft Germany, and content creation for 1M+ people. here's how AI threads through both without burning me out.</p>
+
+  <div class="card mt24 mb32">
+    <div class="label mb16">My time spent with vs without AI (hours per week)</div>
+    <div class="chart-box"><canvas id="timeChart"></canvas></div>
+  </div>
+
+  <div class="tl mt24">
+    <div class="tl-item"><div class="tl-dot on">1</div><div class="tl-bar"></div><div style="flex:1;padding-bottom:4px"><div class="tl-time">7:00 AM · Morning</div><div class="tl-title">AI briefing before i touch email</div><div class="tl-body">10-minute Perplexity run: "what happened in enterprise AI and Azure announcements in the last 48 hours?" gives me talking points for client calls without spending an hour on LinkedIn. then i ask Claude to draft my top 3 priorities for the day based on my notes from yesterday.</div></div></div>
+    <div class="tl-item"><div class="tl-dot on">2</div><div class="tl-bar"></div><div style="flex:1;padding-bottom:4px"><div class="tl-time">9:00 AM – 12:00 PM · Client work</div><div class="tl-title">Solution engineering with AI in the loop</div><div class="tl-body">demos, architecture reviews, RFPs. i use M365 Copilot to pull context from past email threads before every call. after calls, i dictate a voice note, Whisper transcribes it, Claude turns it into a structured follow-up email draft. i edit and send. 8 minutes instead of 30.</div></div></div>
+    <div class="tl-item"><div class="tl-dot on">3</div><div class="tl-bar"></div><div style="flex:1;padding-bottom:4px"><div class="tl-time">1:00 – 3:00 PM · Content</div><div class="tl-title">AI-assisted scripting and research</div><div class="tl-body">for LinkedIn or TikTok: i brainstorm out loud with Claude for 10 minutes (brain dump, key ideas, hook options, script draft). for carousels: i ask for a 7-slide structure, then write the actual words myself. for video: i use the AI output as a knowledge prompt then talk naturally. CapCut AI handles captions and cuts.</div></div></div>
+    <div class="tl-item"><div class="tl-dot on">4</div><div class="tl-bar"></div><div style="flex:1;padding-bottom:4px"><div class="tl-time">3:00 – 5:00 PM · Strategy</div><div class="tl-title">AI handles the admin, i do the thinking</div><div class="tl-body">email triage with Superhuman AI. slide updates with Copilot in PowerPoint. brand deal proposals: a template prompt generates a first draft in 3 minutes, then i personalise the one thing that actually matters, which is the brand fit rationale.</div></div></div>
+    <div class="tl-item"><div class="tl-dot">5</div><div style="flex:1"><div class="tl-time">Friday evening · Weekly review</div><div class="tl-title">One AI conversation to close the week</div><div class="tl-body">i paste my week's notes into Claude and ask "what patterns do you see? what should i do more of? what am i avoiding?" it doesn't replace journaling. it gives me a starting point for reflection. then i set 3 intentions for next week and add them to Notion AI.</div></div></div>
+  </div>
+
+  <div class="pq mt32">
+    <p>"AI doesn't give me more hours. it gives me back the hours i was wasting on things that don't actually need my brain."</p>
+    <cite>Isha Salania &nbsp;·&nbsp; @ishasalania</cite>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="label mb12">that's a wrap</div>
+  <h2>Now go build something.</h2>
+  <p>if this guide helped, share it and tag me. i reshare every single one. and if you have questions about Azure AI, RAG, or content strategy, my DMs are open.</p>
+  <div class="fl">
+    <a href="https://ishasalania.netlify.app/" class="flink" target="_blank">Website</a>
+    <a href="https://www.instagram.com/ishasalania" class="flink" target="_blank">Instagram</a>
+    <a href="https://www.tiktok.com/@ishasalania" class="flink" target="_blank">TikTok</a>
+    <a href="https://www.youtube.com/channel/UCEP5GZlrufSxr2pNfTQGkGg" class="flink" target="_blank">YouTube</a>
+    <a href="https://de.linkedin.com/in/ishasalania" class="flink" target="_blank">LinkedIn</a>
+  </div>
+  <div class="fcopy">© 2026 Isha Salania &nbsp;·&nbsp; All rights reserved &nbsp;·&nbsp; Guide v4.0</div>
 </div>
 
-<!-- CHARTS JS -->
 <script>
-Chart.defaults.font.family = "'DM Sans', sans-serif";
-Chart.defaults.color = '#7a7770';
+Chart.defaults.font.family="'DM Sans',sans-serif";
+Chart.defaults.color='#9e9e9e';
+Chart.defaults.font.size=11;
+const A='#3b82c4',B='#e8e8e8',C='#6b6b6b';
 
-// 1. Adoption chart
-new Chart(document.getElementById('adoptionChart'), {
-  type: 'bar',
-  data: {
-    labels: ['Chatbots / assistants', 'RAG / grounded AI', 'Copilot / M365 AI', 'Code gen (GitHub Copilot)', 'AI search & retrieval', 'Agentic workflows', 'Fine-tuned models'],
-    datasets: [{
-      label: '% actively using',
-      data: [81, 73, 68, 62, 57, 34, 29],
-      backgroundColor: ['#b8842a','#b8842a','#1e5fa0','#1e5fa0','#1d7a6b','#7a7770','#7a7770'],
-      borderRadius: 6,
-      borderSkipped: false,
-    }]
-  },
-  options: {
-    indexAxis: 'y',
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: { display: false },
-      tooltip: { callbacks: { label: v => ' ' + v.raw + '%' } }
-    },
-    scales: {
-      x: { max: 100, grid: { color: '#e2ddd5' }, ticks: { callback: v => v + '%' } },
-      y: { grid: { display: false } }
-    }
-  }
-});
+new Chart(document.getElementById('adoptionChart'),{type:'bar',data:{labels:['Chatbots / assistants','RAG / grounded AI','Copilot / M365 AI','Code generation','AI search + retrieval','Agentic workflows','Fine-tuned models'],datasets:[{data:[81,73,68,62,57,34,29],backgroundColor:[A,A,C,C,A,B,B],borderRadius:4,borderSkipped:false}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:v=>' '+v.raw+'%'}}},scales:{x:{max:100,grid:{color:'#f7f7f5'},ticks:{callback:v=>v+'%'}},y:{grid:{display:false}}}}});
 
-// 2. RAG maturity chart
-new Chart(document.getElementById('ragChart'), {
-  type: 'bar',
-  data: {
-    labels: ['Prototype\n(basic RAG)', 'Pilot\n(testing in prod)', 'Production\n(one use case)', 'Scaled\n(multiple use cases)', 'Platform\n(org-wide RAG)'],
-    datasets: [{
-      label: '% of enterprise teams',
-      data: [8, 19, 35, 27, 11],
-      backgroundColor: ['#e2ddd5','#b8842a55','#b8842a','#1d7a6b','#0f4a3f'],
-      borderRadius: 8,
-      borderSkipped: false,
-    }]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: { display: false },
-      tooltip: { callbacks: { label: v => ' ' + v.raw + '% of teams' } }
-    },
-    scales: {
-      y: { max: 50, grid: { color: '#e2ddd5' }, ticks: { callback: v => v + '%' } },
-      x: { grid: { display: false } }
-    }
-  }
-});
+new Chart(document.getElementById('ragChart'),{type:'bar',data:{labels:['Prototype','Pilot','Production','Scaled','Platform'],datasets:[{data:[8,19,35,27,11],backgroundColor:[B,'rgba(59,130,196,.3)',A,'#2e70b0','#1a5a9a'],borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:v=>' '+v.raw+'% of teams'}}},scales:{y:{max:50,grid:{color:'#f7f7f5'},ticks:{callback:v=>v+'%'}},x:{grid:{display:false}}}}});
 
-// 3. MS product awareness vs use
-new Chart(document.getElementById('msChart'), {
-  type: 'bar',
-  data: {
-    labels: ['M365 Copilot', 'Azure AI Foundry', 'Microsoft Fabric', 'Azure AI Search', 'Copilot Studio', 'Work IQ'],
-    datasets: [
-      {
-        label: 'Aware of product',
-        data: [94, 78, 72, 65, 58, 41],
-        backgroundColor: '#e2ddd5',
-        borderRadius: 4,
-        borderSkipped: false,
-      },
-      {
-        label: 'Actively using',
-        data: [61, 34, 29, 23, 19, 8],
-        backgroundColor: '#b8842a',
-        borderRadius: 4,
-        borderSkipped: false,
-      }
-    ]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: true,
-        position: 'top',
-        labels: { usePointStyle: true, pointStyle: 'rect', font: { size: 12 } }
-      },
-      tooltip: { callbacks: { label: v => ' ' + v.dataset.label + ': ' + v.raw + '%' } }
-    },
-    scales: {
-      y: { max: 100, grid: { color: '#e2ddd5' }, ticks: { callback: v => v + '%' } },
-      x: { grid: { display: false } }
-    }
-  }
-});
+new Chart(document.getElementById('msChart'),{type:'bar',data:{labels:['M365 Copilot','Azure AI Foundry','Microsoft Fabric','Azure AI Search','Copilot Studio','Work IQ'],datasets:[{label:'Aware of product',data:[94,78,72,65,58,41],backgroundColor:B,borderRadius:3,borderSkipped:false},{label:'Actively using',data:[61,34,29,23,19,8],backgroundColor:A,borderRadius:3,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'top',labels:{usePointStyle:true,pointStyle:'rect',font:{size:11},color:'#9e9e9e'}}},scales:{y:{max:100,grid:{color:'#f7f7f5'},ticks:{callback:v=>v+'%'}},x:{grid:{display:false}}}}});
 
-// 4. Time allocation chart
-new Chart(document.getElementById('timeChart'), {
-  type: 'bar',
-  data: {
-    labels: ['Email & comms', 'Research', 'Writing / scripting', 'Client prep', 'Admin & scheduling', 'Deep thinking'],
-    datasets: [
-      {
-        label: 'Without AI (hrs/week)',
-        data: [8, 6, 7, 5, 4, 6],
-        backgroundColor: '#e2ddd5',
-        borderRadius: 4,
-        borderSkipped: false,
-      },
-      {
-        label: 'With AI (hrs/week)',
-        data: [2, 1.5, 2, 1.5, 1, 8],
-        backgroundColor: '#1d7a6b',
-        borderRadius: 4,
-        borderSkipped: false,
-      }
-    ]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: true,
-        position: 'top',
-        labels: { usePointStyle: true, pointStyle: 'rect', font: { size: 12 } }
-      },
-    },
-    scales: {
-      y: { grid: { color: '#e2ddd5' }, ticks: { callback: v => v + 'h' } },
-      x: { grid: { display: false } }
-    }
-  }
-});
+new Chart(document.getElementById('timeChart'),{type:'bar',data:{labels:['Email + comms','Research','Writing / scripting','Client prep','Admin','Deep thinking'],datasets:[{label:'Without AI (hrs/week)',data:[8,6,7,5,4,6],backgroundColor:B,borderRadius:3,borderSkipped:false},{label:'With AI (hrs/week)',data:[2,1.5,2,1.5,1,8],backgroundColor:A,borderRadius:3,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'top',labels:{usePointStyle:true,pointStyle:'rect',font:{size:11},color:'#9e9e9e'}}},scales:{y:{grid:{color:'#f7f7f5'},ticks:{callback:v=>v+'h'}},x:{grid:{display:false}}}}});
 </script>
 </body>
 </html>
