@@ -1,6 +1,6 @@
-# Isha Salania — Free AI Kickstart Guide 2026
+Free AI Kickstart Guide 2026
 
-A free, in-depth guide to AI in 2026 — built for creators, students, and professionals who want to actually understand and use AI, not just talk about it.
+A free, in-depth guide to AI in 2026, built for creators, students, and professionals who want to actually understand and use AI, not just talk about it.
 
 ## What's inside
 
@@ -8,7 +8,7 @@ A free, in-depth guide to AI in 2026 — built for creators, students, and profe
 - Semantic AI explained (with visuals)
 - RAG architecture — how it works, diagrams included
 - The Microsoft AI stack: Fabric, Azure AI Foundry, Copilot, Work IQ
-- How to build RAG in production — 7 best practices
+- How to build RAG in production: 7 best practices
 - Copy-paste prompt kit
 - My daily workflow as a Microsoft Solution Engineer + creator
 
